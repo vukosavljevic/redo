@@ -974,7 +974,7 @@ watch(
   }
   
   .title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     letter-spacing: -1.5px;
     margin-bottom: 2rem;
   }
@@ -1032,17 +1032,17 @@ watch(
   }
   
   .projects-title {
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     margin-bottom: 1rem;
     gap: 0.5rem;
   }
   
   .title-slash {
-    font-size: 2.5rem;
+    font-size: 2.1rem;
   }
   
   .title-text {
-    font-size: 2.5rem;
+    font-size: 2.1rem;
   }
   
   .projects-description {
@@ -1103,6 +1103,12 @@ watch(
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 3rem;
+  }
+
+  .contact-title {
+    font-size: 2.4rem;
+    letter-spacing: -1.5px;
+    margin-bottom: 2rem;
   }
 }
 </style>

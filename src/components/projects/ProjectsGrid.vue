@@ -182,14 +182,14 @@ defineEmits(['open'])
   }
 
   .projects-title {
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     margin-bottom: 1rem;
     gap: 0.5rem;
   }
 
   .title-slash,
   .title-text {
-    font-size: 2.5rem;
+    font-size: 2.1rem;
   }
 
   .projects-description {

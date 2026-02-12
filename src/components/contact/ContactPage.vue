@@ -275,9 +275,9 @@ const submitContact = () => {
   }
 
   .contact-title {
-    font-size: 2.6rem;
-    letter-spacing: -1.5px;
-    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    letter-spacing: -1.3px;
+    margin-bottom: 1.75rem;
   }
 
   .contact-description {
