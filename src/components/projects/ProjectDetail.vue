@@ -119,7 +119,7 @@ defineEmits(['back'])
 }
 
 .year {
-  color: #ff0000;
+  color: #ee0606;
   margin-left: 0.5rem;
 }
 

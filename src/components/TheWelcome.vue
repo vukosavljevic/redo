@@ -624,7 +624,7 @@ watch(
 }
 
 .title-slash {
-  color: #ff0000;
+  color: #ee0606;
   font-size: 4rem;
   font-weight: 800;
 }
@@ -688,7 +688,6 @@ watch(
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
   transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
@@ -737,7 +736,7 @@ watch(
 }
 
 .project-year {
-  color: #ff0000;
+  color: #ee0606;
   font-weight: 600;
 }
 
@@ -772,7 +771,7 @@ watch(
   font-family: 'Monument Extended', sans-serif;
   font-size: 3rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #ee0606;
   margin-bottom: 0.5rem;
 }
 

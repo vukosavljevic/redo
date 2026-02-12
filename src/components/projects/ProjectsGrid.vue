@@ -80,7 +80,7 @@ defineEmits(['open'])
 }
 
 .title-slash {
-  color: #ff0000;
+  color: #ee0606;
   font-size: 4rem;
   font-weight: 800;
 }
@@ -136,7 +136,6 @@ defineEmits(['open'])
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
   pointer-events: none;
 }
@@ -171,7 +170,7 @@ defineEmits(['open'])
 }
 
 .project-year {
-  color: #ff0000;
+  color: #ee0606;
   font-weight: 600;
   margin-left: 0.35rem;
 }
