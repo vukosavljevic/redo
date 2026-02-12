@@ -199,9 +199,10 @@ import HelloWorld from './components/HelloWorld.vue'
   left: 50%;
   transform: translateX(-50%);
   background-color: #1a1a1a;
-  padding: 1.5rem var(--page-horizontal-padding);
+  padding: 1.5rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  width: 80%;
+  width: min(80%, 100% - 2rem);
+  box-sizing: border-box;
   z-index: 3;
   border-radius: 12px 12px 0 0;
 }
@@ -284,6 +285,11 @@ import HelloWorld from './components/HelloWorld.vue'
     gap: 2.5rem;
   }
   
+  /* Hide bottom bar on mobile */
+  .footer-bottom {
+    display: none;
+  }
+
   .footer-bottom-content {
     flex-direction: column;
     text-align: center;
