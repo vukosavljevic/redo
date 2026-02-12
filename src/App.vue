@@ -125,7 +125,7 @@ import HelloWorld from './components/HelloWorld.vue'
   font-weight: 400;
   color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   margin: 0;
 }
 
@@ -149,7 +149,7 @@ import HelloWorld from './components/HelloWorld.vue'
   font-weight: 400;
   color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
   padding: 0.5rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
@@ -172,6 +172,7 @@ import HelloWorld from './components/HelloWorld.vue'
   font-size: 0.9rem;
   font-weight: 400;
   color: #ffffff;
+  letter-spacing: 3px;
   line-height: 1.6;
 }
 
@@ -214,6 +215,7 @@ import HelloWorld from './components/HelloWorld.vue'
   font-size: 0.875rem;
   font-weight: 400;
   color: #ffffff;
+  letter-spacing: 3px;
   margin: 0;
 }
 

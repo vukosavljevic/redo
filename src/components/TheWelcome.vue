@@ -345,7 +345,7 @@ watch(
   font-weight: 800;
   line-height: 1.05;
   color: #ffffff;
-  letter-spacing: -3px;
+  letter-spacing: 3px;
   margin-left: auto;
   margin-right: auto;
   max-width: 100%;
@@ -633,7 +633,7 @@ watch(
   font-family: 'Monument Extended', sans-serif;
   font-size: 4rem;
   font-weight: 800;
-  letter-spacing: -2px;
+  letter-spacing: 3px;
 }
 
 .projects-description {

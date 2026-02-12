@@ -89,7 +89,7 @@ defineEmits(['open'])
   font-family: 'Monument Extended', sans-serif;
   font-size: 4rem;
   font-weight: 800;
-  letter-spacing: -2px;
+  letter-spacing: 3px;
 }
 
 .projects-description {
