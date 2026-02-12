@@ -974,7 +974,7 @@ watch(
   
   .title {
     font-size: 2.5rem;
-    letter-spacing: -1.5px;
+    letter-spacing:3px;
     margin-bottom: 2rem;
   }
   
