@@ -1,7 +1,8 @@
 <template>
   <header class="header" :class="{ 'scrolled': isScrolled }">
     <div class="header-container">
-      <a href="/" class="logo" @click.prevent="goHome">redo.</a>
+      <a href="/" class="logo" @click.prevent="goHome">
+      <img src="@/assets/logo.png" height="50px" alt=""></a>
 
       <!-- Desktop navigation -->
       <nav class="nav nav-desktop">
@@ -20,26 +21,54 @@
         class="nav-toggle"
         type="button"
         @click="toggleMenu"
-        aria-label="Otvori navigaciju"
+        :aria-label="isMenuOpen ? 'Zatvori navigaciju' : 'Otvori navigaciju'"
         :aria-expanded="isMenuOpen ? 'true' : 'false'"
       >
         <span :class="['burger-line', { open: isMenuOpen }]"></span>
       </button>
     </div>
 
-    <!-- Mobile overlay -->
+    <!-- Mobile overlay (backdrop) -->
     <div
       class="nav-overlay"
       v-if="isMenuOpen"
       @click="closeMenu"
     ></div>
 
-    <!-- Mobile menu -->
-    <nav class="nav-mobile" :class="{ open: isMenuOpen }">
-      <a href="#projekti" @click.prevent="handleMobileNavigate('projekti')">Projekti</a>
-      <a href="#o-nama" @click.prevent="handleMobileNavigate('o-nama')">O nama</a>
-      <a href="/kontakt" @click.prevent="handleMobileContact">Kontakt</a>
-    </nav>
+    <!-- Mobile menu – full-screen kao na slici -->
+    <div class="nav-mobile" :class="{ open: isMenuOpen }">
+      <div class="nav-mobile-header">
+        <a href="/" class="logo" @click.prevent="goHome">
+          <img src="@/assets/logo.png" alt="REDO" />
+        </a>
+        <button
+          type="button"
+          class="nav-mobile-close"
+          aria-label="Zatvori izbornik"
+          @click="closeMenu"
+        >
+          <span class="nav-mobile-close-x"></span>
+        </button>
+      </div>
+      <nav class="nav-mobile-links">
+        <a href="/" @click.prevent="goHome">Početna</a>
+        <a href="#o-nama" @click.prevent="handleMobileNavigate('o-nama')">O nama</a>
+        <a href="#projekti" @click.prevent="handleMobileNavigate('projekti')">Projekti</a>
+        <a href="/kontakt" @click.prevent="handleMobileContact">Kontakt</a>
+      </nav>
+      <div class="nav-mobile-social">
+        <a href="https://www.instagram.com/agencyredo/" class="nav-mobile-social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="https://www.behance.net/redoagency" class="nav-mobile-social-icon" aria-label="Behance" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M22 7h-9v2h3.5c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5H13v2h6c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5h-7.5V7H22zm-13 4.5c0-.8-.7-1.5-1.5-1.5H6v3h1.5c.8 0 1.5-.7 1.5-1.5v0zm1.5 4.5H6v3h4.5c.8 0 1.5-.7 1.5-1.5s-.7-1.5-1.5-1.5zm-6-9H2v9h2.5c.8 0 1.5-.7 1.5-1.5v-6c0-.8-.7-1.5-1.5-1.5z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </header>
 </template>
 
@@ -167,12 +196,15 @@ onUnmounted(() => {
 
 .logo {
   font-family: 'Monument Extended', sans-serif;
-  font-size: 1.5rem;
   font-weight: 800;
+  height: 50px;
   color: #ffffff;
   letter-spacing: -0.5px;
 }
-
+.logo img{
+  height: 100%;
+  width: auto;
+}
 .nav {
   display: flex;
   align-items: center;
@@ -209,9 +241,6 @@ onUnmounted(() => {
   transform: translateY(-1px);
 }
 
-.cta-desktop {
-  margin-left: 1.5rem;
-}
 
 /* Mobile toggle button */
 .nav-toggle {
@@ -268,44 +297,176 @@ onUnmounted(() => {
   transform: rotate(-45deg);
 }
 
-/* Mobile nav container */
+/* Mobile menu – cijeli ekran, tamni overlay ispod linkova */
 .nav-mobile {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(5, 5, 5, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  flex-direction: column;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .nav-mobile.open {
   display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem var(--page-horizontal-padding);
+  flex-shrink: 0;
+}
+
+.nav-mobile-logo {
+  display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 0.75rem var(--page-horizontal-padding) 1.25rem;
-}
-
-.nav-mobile a {
-  font-family: 'Monument Extended', sans-serif;
-  font-size: 0.9rem;
-  color: #ffffff;
-  font-weight: 400;
-  padding: 0.75rem 1.25rem;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  align-items: flex-start;
+  gap: 0.25rem;
   text-decoration: none;
+  color: inherit;
+}
+
+.nav-mobile-logo img {
+  height: 36px;
+  width: auto;
   display: block;
-  text-align: center;
-  transition: all 0.2s ease;
 }
 
-.nav-mobile a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+.nav-mobile-logo-text {
+  font-family: 'Monument Extended', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-/* Mobile full-screen overlay when menu is open */
+.nav-mobile-close {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.nav-mobile-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.nav-mobile-close-x {
+  position: relative;
+  width: 18px;
+  height: 18px;
+}
+
+.nav-mobile-close-x::before,
+.nav-mobile-close-x::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 999px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.nav-mobile-close-x::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.nav-mobile-links {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1.5rem var(--page-horizontal-padding) 0;
+  gap: 0.75rem;
+}
+
+.nav-mobile-links a {
+  font-family: 'Monument Extended', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ee0606;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  transition: opacity 0.2s ease;
+}
+
+.nav-mobile-links a:hover {
+  opacity: 0.85;
+}
+
+.nav-mobile-social {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem var(--page-horizontal-padding) 3rem;
+}
+
+.nav-mobile-social-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ee0606;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-mobile-social-icon:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.nav-mobile-social-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Tamni overlay ispod cijelog menija – cijeli ekran */
 .nav-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(10px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 9998;
 }
 
@@ -317,6 +478,7 @@ onUnmounted(() => {
   .header-container {
     padding: 0.75rem 1.25rem;
     border-radius: 40px;
+    justify-content: space-between;
   }
   
   .logo {
@@ -333,24 +495,6 @@ onUnmounted(() => {
   }
 
   .nav-toggle {
-    display: flex;
-  }
-
-  /* Mobile menu positioning */
-  .nav-mobile {
-    position: fixed;
-    top: 80px;
-    left: var(--page-horizontal-padding);
-    right: var(--page-horizontal-padding);
-    background-color: rgba(30, 30, 30, 0.95);
-    border-radius: 20px;
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 9999;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  .nav-mobile.open {
     display: flex;
   }
 }

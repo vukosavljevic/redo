@@ -62,26 +62,6 @@ body::before {
   z-index: 0;
 }
 
-/* Dark overlay with cursor spotlight effect */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle 500px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    transparent 0%,
-    rgba(0, 0, 0, 0.2) 25%,
-    rgba(0, 0, 0, 0.35) 50%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  pointer-events: none;
-  z-index: 0;
-  transition: background 0.1s ease-out;
-}
-
 /* Ensure content is above grid */
 #app > * {
   z-index: 1;

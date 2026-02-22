@@ -1,7 +1,7 @@
 <template>
   <section class="project-detail">
     <button class="back-button" type="button" @click="$emit('back')">
-      ← Back to projects
+      ← Back to home
     </button>
 
     <div class="detail-header">

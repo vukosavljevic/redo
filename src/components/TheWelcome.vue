@@ -4,16 +4,16 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-video">
-        <iframe
-          src="https://www.youtube.com/embed/owYJntMLh50?autoplay=1&mute=1&controls=0&loop=1&playlist=owYJntMLh50&modestbranding=1&rel=0&playsinline=1"
-          title="redo. hero background video"
-          frameborder="0"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
+        <video
+          src="/hero-video.mp4"
+          autoplay
+          muted
+          loop
           playsinline
-          @load="handleHeroVideoLoad"
+          title="redo. hero background video"
           :class="{ 'video-loaded': isHeroVideoLoaded }"
-        ></iframe>
+          @loadeddata="handleHeroVideoLoad"
+        />
       </div>
 
       <div class="hero-overlay"></div>
@@ -43,11 +43,30 @@
     </section>
 
     <!-- Projekti Section (izdvojeno u komponentu) -->
-    <ProjectsGrid
-      id="projekti"
-      :projects="projects"
-      @open="openProject"
-    />
+    <div class="projects-section">
+      <ProjectsGrid
+        :projects="displayedProjects"
+        @open="openProject"
+      />
+      <div v-if="hasMoreProjects" class="projects-show-more">
+        <button
+          type="button"
+          class="btn-show-more"
+          @click="showAllProjects = true"
+          v-if="!showAllProjects"
+        >
+          Prikaži više
+        </button>
+        <button
+          type="button"
+          class="btn-show-more"
+          @click="showAllProjects = false"
+          v-else
+        >
+          Prikaži manje
+        </button>
+      </div>
+    </div>
 
     <!-- O nama Section -->
     <section id="o-nama" class="section about">
@@ -114,6 +133,14 @@ import futuraImg from '@/assets/futura.png'
 import wineosImg from '@/assets/wineos.png'
 import lamedusaImg from '@/assets/lamedusa.png'
 import brokoImg from '@/assets/broko.png'
+import dubiozaImg from '@/assets/Dubioza.png'
+import kameleonImg from '@/assets/Kameleon.png'
+import lirosImg from '@/assets/Liros.png'
+import mixAutoImg from '@/assets/MixAuto.png'
+import omegaImg from '@/assets/Omega.png'
+import soba23Img from '@/assets/Soba23.png'
+import theraImg from '@/assets/Thera.png'
+import koncertImg from '@/assets/Koncert.png'
 
 const route = useRoute()
 const router = useRouter()
@@ -221,10 +248,171 @@ const projects = [
     approach:
       'Brži rezovi, energična glazba i fokus na izrazima lica te detaljima interijera. Kroz kadar približavamo gledatelju osjećaj večeri provedene u Broku.',
     tags: ['HoReCa', 'Promo']
+  },
+  {
+    id: 'soba-23',
+    title: 'Soba 23 street food',
+    year: 2025,
+    image: soba23Img,
+    layout: 'default',
+    client: 'Soba 23',
+    services: 'Brand video, foto, social',
+    location: 'Osijek, Hrvatska',
+    tagline: 'Street food s karakterom.',
+    story: 'Soba 23 donosi autentičan street food doživljaj. Kreirali smo vizualnu priču koja ističe atmosferu, hranu i ekipu.',
+    approach: 'Dinamični kadrovi i fokus na detaljima hrane i ambijenta.',
+    tags: ['HoReCa', 'Branding']
+  },
+  {
+    id: 'thera',
+    title: 'Thera fireplaces',
+    year: 2024,
+    image: theraImg,
+    layout: 'default',
+    client: 'Thera',
+    services: 'Produkcija, foto, web',
+    location: 'Hrvatska',
+    tagline: 'Vatra i dizajn u jednom.',
+    story: 'Thera fireplaces kombinira kvalitetnu produkciju kamina s modernim dizajnom. Vizualna priča naglašava materijal i toplinu.',
+    approach: 'Elegantni kadrovi, naglasak na detaljima i ambijentu.',
+    tags: ['Produkcija', 'Branding']
+  },
+  {
+    id: 'dubioza',
+    title: 'Dubioza rent-a-bar',
+    year: 2025,
+    image: dubiozaImg,
+    layout: 'default',
+    client: 'Dubioza',
+    services: 'Event, promo video, foto',
+    location: 'Hrvatska',
+    tagline: 'Rent-a-bar koncept koji oživljava zabavu.',
+    story: 'Dubioza rent-a-bar nudi kompletno bar opremu za evente. Snimili smo promo koji predstavlja fleksibilnost i atmosferu usluge.',
+    approach: 'Živahan montažni ritam, prikaz set-upa i događaja.',
+    tags: ['Event', 'Promo']
+  },
+  {
+    id: 'omega-concept-bar',
+    title: 'Omega Concept Bar',
+    year: 2025,
+    image: omegaImg,
+    layout: 'default',
+    client: 'Omega Concept Bar',
+    services: 'Brand video, foto, social',
+    location: 'Hrvatska',
+    tagline: 'Koncept koji spaja koktele i doživljaj.',
+    story: 'Omega Concept Bar je mjesto za posebne trenutke. Vizualna priča ističe koktele, ambijent i društvo.',
+    approach: 'Stilska kamera, topli tonovi i naglasak na detaljima.',
+    tags: ['HoReCa', 'Lifestyle']
+  },
+  {
+    id: 'boom-burgers',
+    title: 'Boom burgers & bbq',
+    year: 2025,
+    image: brokoImg,
+    layout: 'default',
+    client: 'Boom burgers & bbq',
+    services: 'Promo video, foto, social',
+    location: 'Hrvatska',
+    tagline: 'Burgersi i roštilj koji rade bum.',
+    story: 'Boom donosi energičan brand hrane. Snimili smo promo koji ističe porcije, grill i atmosferu uživanja.',
+    approach: 'Brzi rezovi, appetizing kadrovi hrane i ekipa.',
+    tags: ['HoReCa', 'Promo']
+  },
+  {
+    id: 'ring-room',
+    title: 'Ring Room',
+    year: 2025,
+    image: futuraImg,
+    layout: 'default',
+    client: 'Ring Room',
+    services: 'Brand video, foto',
+    location: 'Hrvatska',
+    tagline: 'Prostor s karakterom.',
+    story: 'Ring Room je multifunkcionalni prostor. Vizualna priča naglašava arhitekturu, događaje i mogućnosti korištenja.',
+    approach: 'Čisti kadrovi, prikaz prostora i atmosfere.',
+    tags: ['Branding', 'Prostor']
+  },
+  {
+    id: 'liros',
+    title: 'Liros rent-a-boat',
+    year: 2025,
+    image: lirosImg,
+    layout: 'default',
+    client: 'Liros',
+    services: 'Promo video, foto, web',
+    location: 'Hrvatska',
+    tagline: 'Brodovi i more na dohvat ruke.',
+    story: 'Liros nudi najam brodova. Kreirali smo promo koji predstavlja flotu, more i slobodu putovanja.',
+    approach: 'Zračni kadrovi, more i brodovi u fokusu.',
+    tags: ['Promo', 'Lifestyle']
+  },
+  {
+    id: 'kameleon-security',
+    title: 'Kameleon Security',
+    year: 2025,
+    image: kameleonImg,
+    layout: 'default',
+    client: 'Kameleon Security',
+    services: 'Brand video, web',
+    location: 'Hrvatska',
+    tagline: 'Sigurnost i pouzdanost u prvom planu.',
+    story: 'Kameleon Security pruža usluge osiguranja. Vizualna priča naglašava profesionalnost i povjerenje.',
+    approach: 'Čisti, profesionalni kadrovi i kratak, jasan narativ.',
+    tags: ['Corporate', 'Branding']
+  },
+  {
+    id: 'koncert-produkcija',
+    title: 'Koncert produkcija',
+    year: 2025,
+    image: koncertImg,
+    layout: 'default',
+    client: 'Koncert produkcija',
+    services: 'Event film, live snimanje, foto',
+    location: 'Hrvatska',
+    tagline: 'Live glazba i energija na pozornici.',
+    story: 'Snimali smo koncerte i glazbene događaje. Fokus na izvedbi, publici i tehničkoj kvaliteti produkcije.',
+    approach: 'Multi-kamera montaža, dinamika i ritam glazbe.',
+    tags: ['Event', 'Live']
+  },
+  {
+    id: 'mix-auto',
+    title: 'Mix auto',
+    year: 2025,
+    image: mixAutoImg,
+    layout: 'default',
+    client: 'Mix auto',
+    services: 'Promo video, foto',
+    location: 'Hrvatska',
+    tagline: 'Automobili i usluge u fokusu.',
+    story: 'Mix auto nudi usluge iz područja automobila. Kreirali smo vizualnu prezentaciju brenda i ponude.',
+    approach: 'Čisti kadrovi vozila i usluge.',
+    tags: ['Corporate', 'Promo']
+  },
+  {
+    id: 'vinum-academicum',
+    title: 'Vinum Academicum',
+    year: 2025,
+    image: enPrimeurImg,
+    layout: 'default',
+    client: 'Vinum Academicum',
+    services: 'Event film, foto, social',
+    location: 'Hrvatska',
+    tagline: 'Akademska vinska priča.',
+    story: 'Vinum Academicum povezuje edukaciju i vino. Snimili smo događaj i atmosferu koja spaja znanje i degustaciju.',
+    approach: 'Elegantna montaža, prikaz programa i sudionika.',
+    tags: ['Event', 'Edukacija']
   }
 ]
 
 const selectedProject = ref(null)
+
+const INITIAL_PROJECTS_COUNT = 6
+const showAllProjects = ref(false)
+const displayedProjects = computed(() =>
+  showAllProjects.value ? projects : projects.slice(0, INITIAL_PROJECTS_COUNT)
+)
+const hasMoreProjects = computed(() => projects.length > INITIAL_PROJECTS_COUNT)
 
 // derived "current page" from route
 const currentPage = computed(() => {
@@ -302,16 +490,12 @@ watch(
   pointer-events: none;
 }
 
-.hero-video iframe {
+.hero-video video {
   width: 100%;
   height: 100%;
-  border: 0;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-.hero-video iframe.video-loaded {
+  object-fit: cover;
   opacity: 1;
+  transition: opacity 0.8s ease;
 }
 
 .hero-overlay {
@@ -489,6 +673,37 @@ watch(
 .btn-secondary:hover {
   border-color: rgba(255, 255, 255, 0.5);
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.projects-section {
+  position: relative;
+  z-index: 2;
+}
+
+.projects-show-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+  padding: 0 var(--page-horizontal-padding);
+}
+
+.btn-show-more {
+  font-family: 'Monument Extended', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-show-more:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 /* Section Styles */
