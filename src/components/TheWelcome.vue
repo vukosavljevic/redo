@@ -1,10 +1,26 @@
 <template>
   <!-- HOME -->
   <div v-if="currentPage === 'home'">
+    <!-- Loading overlay: full screen, no scroll, bar 0→100% until video ready -->
+    <div
+      v-if="showHeroLoader"
+      class="hero-loader"
+      :class="{ 'hero-loader-leaving': loaderLeaving }"
+      aria-live="polite"
+      aria-label="Loading"
+      @transitionend="onLoaderTransitionEnd"
+    >
+      <div class="hero-loader-bar-wrap">
+        <div class="hero-loader-bar" :style="{ width: displayProgress + '%' }"></div>
+      </div>
+      <p class="hero-loader-label">{{ Math.round(displayProgress) }}%</p>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-video">
         <video
+          ref="heroVideoRef"
           src="/hero-video.mp4"
           autoplay
           muted
@@ -13,6 +29,8 @@
           title="redo. hero background video"
           :class="{ 'video-loaded': isHeroVideoLoaded }"
           @loadeddata="handleHeroVideoLoad"
+          @progress="onHeroVideoProgress"
+          @canplaythrough="onHeroVideoCanPlayThrough"
         />
       </div>
 
@@ -123,7 +141,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import ProjectsGrid from './projects/ProjectsGrid.vue'
 import ProjectDetail from './projects/ProjectDetail.vue'
@@ -147,9 +165,57 @@ const router = useRouter()
 
 // Hero video loading state
 const isHeroVideoLoaded = ref(false)
+const heroVideoRef = ref(null)
+const showHeroLoader = ref(true)
+const loadProgress = ref(0)
+const displayProgress = ref(0)
+const loaderShownAt = ref(Date.now())
+const loaderLeaving = ref(false)
+let displayProgressRaf = null
 
 const handleHeroVideoLoad = () => {
   isHeroVideoLoaded.value = true
+}
+
+function updateDisplayProgress() {
+  const target = loadProgress.value
+  if (displayProgress.value < target) {
+    const step = Math.min(2, (target - displayProgress.value) * 0.12)
+    displayProgress.value = Math.min(target, displayProgress.value + step)
+    displayProgressRaf = requestAnimationFrame(updateDisplayProgress)
+  } else {
+    displayProgress.value = target
+  }
+}
+
+function onHeroVideoProgress(e) {
+  const v = e.target
+  if (!v || loadProgress.value >= 100) return
+  if (v.duration > 0 && v.buffered.length > 0) {
+    const p = Math.min(99, (v.buffered.end(0) / v.duration) * 100)
+    if (p > loadProgress.value) {
+      loadProgress.value = p
+      if (!displayProgressRaf) displayProgressRaf = requestAnimationFrame(updateDisplayProgress)
+    }
+  }
+}
+
+function onHeroVideoCanPlayThrough() {
+  loadProgress.value = 100
+  if (!displayProgressRaf) displayProgressRaf = requestAnimationFrame(updateDisplayProgress)
+  const elapsed = Date.now() - loaderShownAt.value
+  const minDisplayMs = 2000
+  const wait = Math.max(600, minDisplayMs - elapsed)
+  setTimeout(() => {
+    loaderLeaving.value = true
+  }, wait)
+}
+
+function onLoaderTransitionEnd(e) {
+  if (e.target.classList.contains('hero-loader') && loaderLeaving.value) {
+    showHeroLoader.value = false
+    loaderLeaving.value = false
+  }
 }
 
 const projects = [
@@ -167,7 +233,11 @@ const projects = [
       'En Primeur je jedan od najznačajnijih vinskih događaja u regiji. Naš je zadatak bio prenijeti atmosferu elegancije, druženja i strasti prema vinu na način koji će jednako snažno djelovati i online.',
     approach:
       'Koristili smo kombinaciju dinamičnih kadrova, detaljnih close-upova i pažljivo tempiranog montažnog ritma. Fokus je stavljen na emociju – reakcije ljudi, teksturu vina, ambijent prostora – kako bi gledatelj imao dojam da je dio događaja.',
-    tags: ['Event', 'Video produkcija', 'Social kampanja']
+    tags: ['Event', 'Video produkcija', 'Social kampanja'],
+    sections: [
+      { title: 'Vizija', content: 'Premium vinska priča ispričana kroz snažan vizualni identitet. Željeli smo da gledatelj osjeti emociju događaja – od prvog doživljaja do zadnjeg kadra.' },
+      { title: 'Naš pristup', content: 'Koristili smo kombinaciju dinamičnih kadrova, detaljnih close-upova i pažljivo tempiranog montažnog ritma. Fokus je stavljen na emociju – reakcije ljudi, teksturu vina, ambijent prostora – kako bi gledatelj imao dojam da je dio događaja.' }
+    ]
   },
   {
     id: 'postolar-varga',
@@ -183,7 +253,11 @@ const projects = [
       'Za Postolara Vargu kreirali smo vizualnu priču koja kombinira tradiciju ručnog rada i suvremeni pristup brendiranju. Fokus je bio na teksturi materijala, detaljima procesa i osobnosti brenda.',
     approach:
       'Snimali smo u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje – ruke u radu, alate, izraze lica – uz pažljivu zvučnu kulisu.',
-    tags: ['Brending', 'Storytelling', 'Craft']
+    tags: ['Brending', 'Storytelling', 'Craft'],
+    sections: [
+      { title: 'Vizija', content: 'Priča o zanatu, karakteru i vremenu koje ostavlja trag. Željeli smo prenijeti autentičnost i toplinu radionice te ljudsku priču iza brenda.' },
+      { title: 'Naš pristup', content: 'Snimali smo u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje – ruke u radu, alate, izraze lica – uz pažljivu zvučnu kulisu.' }
+    ]
   },
   {
     id: 'futurra',
@@ -199,7 +273,11 @@ const projects = [
       'FUTURRA je brand koji diše inovaciju. Cilj je bio isporučiti sadržaj koji izgleda moderno, brzo i digitalno – ali i dalje ostaje razumljiv široj publici.',
     approach:
       'Kombinirali smo snimljeni materijal s motion grafikom i tipografskim animacijama. Sve je podređeno ritmu glazbe, kako bi video imao snažan, almost „music video” karakter.',
-    tags: ['Promo', 'Motion design', 'Digital']
+    tags: ['Promo', 'Motion design', 'Digital'],
+    sections: [
+      { title: 'Vizija', content: 'Futurističan pogled na brand u pokretu. Željeli smo vizualno prepoznatljiv promo koji odražava energiju i inovativnost brenda.' },
+      { title: 'Naš pristup', content: 'Kombinirali smo snimljeni materijal s motion grafikom i tipografskim animacijama. Sve je podređeno ritmu glazbe, kako bi video imao snažan, almost „music video” karakter.' }
+    ]
   },
   {
     id: 'wineos',
@@ -215,7 +293,11 @@ const projects = [
       'Wineos je festival koji spaja vinoljupce, izlagače i kreativce. Željeli smo uhvatiti energiju događaja i isporučiti sadržaj koji će zvati publiku da dođe i iduće godine.',
     approach:
       'Dinamična kamera, handheld kadrovi i fokus na emociju publike. Kroz montažu pratimo „putovanje” posjetitelja kroz festival – od prvog gutljaja do zadnjeg kadra večeri.',
-    tags: ['Event', 'Aftermovie']
+    tags: ['Event', 'Aftermovie'],
+    sections: [
+      { title: 'Vizija', content: 'Festival vina, ljudi i posebne atmosfere. Cilj je bio prenijeti doživljaj – od degustacije do druženja – kroz vizualnu priču.' },
+      { title: 'Naš pristup', content: 'Dinamična kamera, handheld kadrovi i fokus na emociju publike. Kroz montažu pratimo „putovanje” posjetitelja kroz festival – od prvog gutljaja do zadnjeg kadra večeri.' }
+    ]
   },
   {
     id: 'la-medussa',
@@ -231,23 +313,32 @@ const projects = [
       'La Medussa je brand koji živi na moru – opušteno, elegantno i s dozom luksuza. Kroz vizuale ističemo sunce, teksture kamena, more i detalje interijera.',
     approach:
       'Koristili smo tople tonove, spore pokrete kamere i naglasak na detaljima. Cilj je bio stvoriti osjećaj ljetne večeri uz more, koji gledatelj „osjeti” već nakon nekoliko sekundi.',
-    tags: ['Hospitality', 'Lifestyle']
+    tags: ['Hospitality', 'Lifestyle'],
+    sections: [
+      { title: 'Vizija', content: 'Mediterranean vibe pretočen u vizualni identitet. Željeli smo da gledatelj odmah osjeti atmosferu jadranskog ljeta i luksuznog doživljaja.' },
+      { title: 'Naš pristup', content: 'Koristili smo tople tonove, spore pokrete kamere i naglasak na detaljima. Cilj je bio stvoriti osjećaj ljetne večeri uz more, koji gledatelj „osjeti” već nakon nekoliko sekundi.' }
+    ]
   },
   {
     id: 'broko',
     title: 'Pivnica Broko',
     year: 2025,
+    kicker: 'SOCIAL MEDIA MANAGEMENT',
     image: brokoImg,
     layout: 'wide',
     client: 'Pivnica Broko',
-    services: 'Promo video, foto, social',
+    services: 'Sadržaj za društvene mreže',
     location: 'Osijek, Hrvatska',
-    tagline: 'Mjesto za ekipu, priču i dobru pivu.',
+    tagline: 'Mjesto za ekipu, priču i dobru hranu.',
     story:
-      'Za Pivnicu Broko gradili smo vizualnu priču oko atmosfere – društvo, smijeh, glazba i piva u fokusu. Nije riječ samo o lokalu, nego o mjestu na koje se ljudi vraćaju.',
+      'Za Pivnicu Broko gradili smo vizualnu priču oko atmosfere – društvo, smijeh, glazba i dobra hrana u fokusu. Nije riječ samo o lokalu, nego o mjestu na koje se ljudi vraćaju.',
     approach:
       'Brži rezovi, energična glazba i fokus na izrazima lica te detaljima interijera. Kroz kadar približavamo gledatelju osjećaj večeri provedene u Broku.',
-    tags: ['HoReCa', 'Promo']
+    tags: ['HoReCa', 'Social media'],
+    sections: [
+      { title: 'Vizija', content: 'Mjesto za ekipu, priču i dobru hranu. Cilj je bio prenijeti energiju i toplinu lokala te pozvati gledatelja da dođe i doživi.' },
+      { title: 'Naš pristup', content: 'Brži rezovi, energična glazba i fokus na izrazima lica te detaljima interijera. Kroz kadar približavamo gledatelju osjećaj večeri provedene u Broku.' }
+    ]
   },
   {
     id: 'soba-23',
@@ -261,7 +352,11 @@ const projects = [
     tagline: 'Street food s karakterom.',
     story: 'Soba 23 donosi autentičan street food doživljaj. Kreirali smo vizualnu priču koja ističe atmosferu, hranu i ekipu.',
     approach: 'Dinamični kadrovi i fokus na detaljima hrane i ambijenta.',
-    tags: ['HoReCa', 'Branding']
+    tags: ['HoReCa', 'Branding'],
+    sections: [
+      { title: 'Vizija', content: 'Street food s karakterom. Željeli smo prenijeti energiju i autentičnost brenda te pozvati gledatelja da dođe i proba.' },
+      { title: 'Naš pristup', content: 'Dinamični kadrovi i fokus na detaljima hrane i ambijenta. Vizualna priča gradi se kroz bliske kadrove jela, ekipe i atmosfere lokala.' }
+    ]
   },
   {
     id: 'thera',
@@ -275,7 +370,11 @@ const projects = [
     tagline: 'Vatra i dizajn u jednom.',
     story: 'Thera fireplaces kombinira kvalitetnu produkciju kamina s modernim dizajnom. Vizualna priča naglašava materijal i toplinu.',
     approach: 'Elegantni kadrovi, naglasak na detaljima i ambijentu.',
-    tags: ['Produkcija', 'Branding']
+    tags: ['Produkcija', 'Branding'],
+    sections: [
+      { title: 'Vizija', content: 'Vatra i dizajn u jednom. Cilj je bio predstaviti brend kroz kvalitetu proizvoda, estetiku i osjećaj topline koji kamin donosi u prostor.' },
+      { title: 'Naš pristup', content: 'Elegantni kadrovi, naglasak na detaljima i ambijentu. Snimali smo proizvode u kontekstu interijera kako bismo prenijeli i funkcionalnost i dizajn.' }
+    ]
   },
   {
     id: 'dubioza',
@@ -455,8 +554,38 @@ const scrollToProjects = () => {
   })
 }
 
+// Lock scroll while hero loader is visible
+watch(showHeroLoader, (visible) => {
+  document.body.style.overflow = visible ? 'hidden' : ''
+})
+
+// When entering home, show loader and reset progress
+watch(
+  () => currentPage.value,
+  (page) => {
+    if (page === 'home') {
+      showHeroLoader.value = true
+      loadProgress.value = 0
+      displayProgress.value = 0
+      loaderLeaving.value = false
+      loaderShownAt.value = Date.now()
+      if (displayProgressRaf) cancelAnimationFrame(displayProgressRaf)
+      displayProgressRaf = null
+    }
+  }
+)
+
 onMounted(() => {
   findProjectByRoute()
+  if (currentPage.value === 'home') {
+    loaderShownAt.value = Date.now()
+    displayProgress.value = 0
+    document.body.style.overflow = showHeroLoader.value ? 'hidden' : ''
+  }
+})
+
+onUnmounted(() => {
+  document.body.style.overflow = ''
 })
 
 watch(
@@ -468,6 +597,50 @@ watch(
 </script>
 
 <style scoped>
+/* Full-screen loading overlay until hero video is ready */
+.hero-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: #0a0a0a;
+  padding: 2rem;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.hero-loader.hero-loader-leaving {
+  opacity: 0;
+}
+
+.hero-loader-bar-wrap {
+  width: 100%;
+  max-width: 280px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.hero-loader-bar {
+  height: 100%;
+  background: #ee0606;
+  border-radius: 999px;
+  transition: width 0.45s ease-out;
+}
+
+.hero-loader-label {
+  font-family: 'Monument Extended', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 2px;
+  margin: 0;
+}
+
 .hero {
   min-height: 100vh;
   display: flex;

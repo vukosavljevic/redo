@@ -5,7 +5,7 @@
     </button>
 
     <div class="detail-header">
-      <p class="kicker">CASE STUDY</p>
+      <p class="kicker">{{ project.kicker || (project.services ? project.services.split(',')[0].trim().toUpperCase() : 'CASE STUDY') }}</p>
       <h1 class="title">
         {{ project.title }}
         <span class="year">{{ project.year }}</span>
@@ -34,16 +34,27 @@
       <img :src="project.image" :alt="project.title" />
     </div>
 
-    <div class="content-grid">
-      <article class="content-block">
-        <h2>Vizija</h2>
-        <p>{{ project.story }}</p>
-      </article>
-
-      <article class="content-block">
-        <h2>Naš pristup</h2>
-        <p>{{ project.approach }}</p>
-      </article>
+    <div class="content-grid" :class="{ 'content-grid-sections': project.sections?.length }">
+      <template v-if="project.sections?.length">
+        <article
+          v-for="(section, idx) in project.sections"
+          :key="idx"
+          class="content-block"
+        >
+          <h2>{{ section.title }}</h2>
+          <p>{{ section.content }}</p>
+        </article>
+      </template>
+      <template v-else>
+        <article class="content-block">
+          <h2>Vizija</h2>
+          <p>{{ project.story }}</p>
+        </article>
+        <article class="content-block">
+          <h2>Naš pristup</h2>
+          <p>{{ project.approach }}</p>
+        </article>
+      </template>
     </div>
 
     <div class="tags" v-if="project.tags?.length">
@@ -175,6 +186,10 @@ defineEmits(['back'])
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 3rem;
   margin-bottom: 3rem;
+}
+
+.content-grid.content-grid-sections {
+  grid-template-columns: 1fr;
 }
 
 .content-block h2 {
