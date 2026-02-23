@@ -13,7 +13,22 @@
 
       <!-- Desna strana: forma -->
       <div class="contact-right">
-        <form class="contact-form" @submit.prevent="submitContact">
+        <p v-if="submitStatus === 'success'" class="form-status form-status-success">
+          Hvala! Poruka je poslana. Javit ćemo vam se uskoro.
+          <button type="button" class="form-status-link" @click="submitStatus = null">
+            Pošalji novi upit
+          </button>
+        </p>
+        <p v-else-if="submitStatus === 'error'" class="form-status form-status-error">
+          Došlo je do greške. Pokušajte ponovno ili nam se javite na os.agency.redo@gmail.com.
+        </p>
+        <form
+          v-show="submitStatus !== 'success'"
+          class="contact-form"
+          action="#"
+          method="post"
+          @submit.prevent="submitContact"
+        >
           <div class="form-row">
             <label for="name">Ime i prezime</label>
             <input
@@ -22,6 +37,7 @@
               type="text"
               placeholder="Vaše ime"
               required
+              :disabled="isSending"
             />
           </div>
 
@@ -33,6 +49,7 @@
               type="email"
               placeholder="vas@email.com"
               required
+              :disabled="isSending"
             />
           </div>
 
@@ -42,6 +59,7 @@
               id="service"
               v-model="formService"
               required
+              :disabled="isSending"
             >
               <option disabled value="">Odaberite uslugu</option>
               <option value="Snimanje">Snimanje</option>
@@ -61,11 +79,16 @@
               rows="6"
               placeholder="Napišite nam što trebate..."
               required
+              :disabled="isSending"
             ></textarea>
           </div>
 
-          <button type="submit" class="contact-button contact-button-full">
-            Pošalji upit →
+          <button
+            type="submit"
+            class="contact-button contact-button-full"
+            :disabled="isSending"
+          >
+            {{ isSending ? 'Šaljem...' : 'Pošalji upit →' }}
           </button>
         </form>
       </div>
@@ -75,19 +98,56 @@
 
 <script setup>
 import { ref } from 'vue'
+import emailjs from '@emailjs/browser'
 
 const formName = ref('')
 const formEmail = ref('')
 const formService = ref('')
 const formMessage = ref('')
+const isSending = ref(false)
+const submitStatus = ref(null) // null | 'success' | 'error'
 
-const submitContact = () => {
-  const subject = encodeURIComponent('Novi upit s web stranice')
-  const body = encodeURIComponent(
-    `Ime i prezime: ${formName.value}\nEmail: ${formEmail.value}\nUsluga: ${formService.value}\n\nPoruka:\n${formMessage.value}`
-  )
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
 
-  window.location.href = `mailto:hello@redo.agency?subject=${subject}&body=${body}`
+const resetForm = () => {
+  formName.value = ''
+  formEmail.value = ''
+  formService.value = ''
+  formMessage.value = ''
+}
+
+const submitContact = async (e) => {
+  e.preventDefault()
+  if (!publicKey || !serviceId || !templateId) {
+    submitStatus.value = 'error'
+    return
+  }
+
+  isSending.value = true
+  submitStatus.value = null
+
+  try {
+    await emailjs.send(
+      serviceId,
+      templateId,
+      {
+        name: formName.value,
+        title: formService.value,
+        message: formMessage.value,
+        from_email: formEmail.value,
+      },
+      publicKey
+    )
+    submitStatus.value = 'success'
+    resetForm()
+  } catch (err) {
+    console.error('EmailJS error:', err)
+    submitStatus.value = 'error'
+  } finally {
+    isSending.value = false
+  }
 }
 </script>
 
@@ -208,6 +268,41 @@ const submitContact = () => {
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
+}
+
+.form-status {
+  font-family: 'Monument Extended', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.form-status-success {
+  color: #86efac;
+}
+
+.form-status-error {
+  color: #fca5a5;
+}
+
+.form-status-link {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  letter-spacing: 1px;
+}
+
+.form-status-link:hover {
+  opacity: 0.9;
 }
 
 .form-row {

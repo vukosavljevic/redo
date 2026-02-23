@@ -1,5 +1,6 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import behanceImg from '@/assets/behance.png'
 </script>
 
 <template>
@@ -27,7 +28,7 @@ import HelloWorld from './components/HelloWorld.vue'
               </svg>
             </a>
             <a href="https://www.behance.net/redoagency" class="social-icon-circle" aria-label="Behance">
-              <i class="fa-brands fa-behance"></i>
+              <img :src="behanceImg" alt="Behance" class="social-icon-img" />
             </a>
           </div>
         </div>
@@ -147,9 +148,14 @@ a.footer-line:hover {
   transform: translateY(-2px);
 }
 
-.social-icon-circle svg {
+.social-icon-circle svg,
+.social-icon-circle .social-icon-img {
   width: 20px;
   height: 20px;
+}
+
+.social-icon-circle .social-icon-img {
+  object-fit: contain;
 }
 
 .copyright {

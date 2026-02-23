@@ -205,7 +205,8 @@ function onHeroVideoCanPlayThrough() {
   if (!displayProgressRaf) displayProgressRaf = requestAnimationFrame(updateDisplayProgress)
   const elapsed = Date.now() - loaderShownAt.value
   const minDisplayMs = 2000
-  const wait = Math.max(600, minDisplayMs - elapsed)
+  const holdAt100Ms = 500 // extra pause at 100% before transition
+  const wait = Math.max(600, minDisplayMs - elapsed) + holdAt100Ms
   setTimeout(() => {
     loaderLeaving.value = true
   }, wait)
@@ -378,59 +379,129 @@ const projects = [
   },
   {
     id: 'dubioza',
-    title: 'Dubioza rent-a-bar',
+    title: 'Dubioza Rent a Bar',
     year: 2025,
+    kicker: 'WEB & BRANDING',
     image: dubiozaImg,
     layout: 'default',
-    client: 'Dubioza',
-    services: 'Event, promo video, foto',
-    location: 'Hrvatska',
-    tagline: 'Rent-a-bar koncept koji oživljava zabavu.',
-    story: 'Dubioza rent-a-bar nudi kompletno bar opremu za evente. Snimili smo promo koji predstavlja fleksibilnost i atmosferu usluge.',
-    approach: 'Živahan montažni ritam, prikaz set-upa i događaja.',
-    tags: ['Event', 'Promo']
+    client: 'Dubioza Rent a Bar',
+    services: 'Web stranica za rezervacije, Branding',
+    location: 'Osijek, Hrvatska',
+    tagline: 'Mjesto gdje zabava izlazi na slobodu.',
+    story:
+      'Dubioza Rent a Bar je prostor za najam namijenjen privatnim proslavama, rođendanima i manjim eventima. Cilj je bio stvoriti identitet koji je drugačiji, provokativan i odmah prepoznatljiv na tržištu — prostor koji komunicira karakter, stav i dozu ironije.',
+    approach:
+      'Vizualni identitet temeljen je na tipografiji inspiriranoj zatvorskim oznakama i službenim tipografskim stilovima koji asociraju na zakon, red i autoritet. Kontrast između "strogog" vizualnog identiteta i opuštene party atmosfere prostora stvara zanimljivu napetost i diferencijaciju na tržištu.',
+    tags: ['Web', 'Branding', 'Event space'],
+    sections: [
+      {
+        title: 'Vizija',
+        content:
+          'Dubioza Rent a Bar je prostor za najam namijenjen privatnim proslavama, rođendanima i manjim eventima. Cilj je bio stvoriti identitet koji je drugačiji, provokativan i odmah prepoznatljiv na tržištu — prostor koji komunicira karakter, stav i dozu ironije. Brend je zamišljen kao mjesto gdje se pravila svakodnevice ostavljaju vani, a zabava "izlazi na slobodu".'
+      },
+      {
+        title: 'Naš pristup',
+        content:
+          'Vizualni identitet temeljen je na tipografiji inspiriranoj zatvorskim oznakama i službenim tipografskim stilovima koji asociraju na zakon, red i autoritet. Ovaj koncept nije slučajan — referira se na osobnu priču vlasnika i daje brendu autentičnost te snažan karakter. Kontrast između "strogog" vizualnog identiteta i opuštene party atmosfere prostora stvara zanimljivu napetost i diferencijaciju na tržištu.'
+      }
+    ]
   },
   {
     id: 'omega-concept-bar',
     title: 'Omega Concept Bar',
-    year: 2025,
+    year: 2024,
+    kicker: 'SOCIAL MEDIA',
     image: omegaImg,
     layout: 'default',
     client: 'Omega Concept Bar',
-    services: 'Brand video, foto, social',
-    location: 'Hrvatska',
-    tagline: 'Koncept koji spaja koktele i doživljaj.',
-    story: 'Omega Concept Bar je mjesto za posebne trenutke. Vizualna priča ističe koktele, ambijent i društvo.',
-    approach: 'Stilska kamera, topli tonovi i naglasak na detaljima.',
-    tags: ['HoReCa', 'Lifestyle']
+    services: 'Vođenje Instagram profila, content produkcija',
+    location: 'Osijek, Hrvatska',
+    tagline: 'Mjesto gdje atmosfera ima karakter.',
+    story:
+      'Omega Concept Bar je lounge bar s modernim interijerom i naglašenim večernjim ambijentom. Cilj je bio pozicionirati bar kao premium, ali pristupačno mjesto za večernja druženja, izlaske i koktel iskustva — s fokusom na atmosferu, detalje i estetiku prostora.',
+    approach:
+      'Strategija komunikacije temeljila se na tri ključna segmenta: ambijent i atmosfera prostora, kokteli i ponuda, događanja i večernji vibe. Vizualni smjer bio je tamniji, elegantan i cinematic — s naglaskom na svjetlo, refleksije, teksture i detalje.',
+    tags: ['Social media', 'Instagram', 'Content produkcija'],
+    sections: [
+      {
+        title: 'Vizija',
+        content:
+          'Omega Concept Bar je lounge bar s modernim interijerom i naglašenim večernjim ambijentom. Cilj je bio pozicionirati bar kao premium, ali pristupačno mjesto za večernja druženja, izlaske i koktel iskustva — s fokusom na atmosferu, detalje i estetiku prostora. Instagram je trebao postati produžetak doživljaja iz lokala — vizualno snažan, konzistentan i prepoznatljiv.'
+      },
+      {
+        title: 'Naš pristup',
+        content:
+          'Strategija komunikacije temeljila se na tri ključna segmenta: ambijent i atmosfera prostora, kokteli i ponuda, događanja i večernji vibe. Vizualni smjer bio je tamniji, elegantan i cinematic — s naglaskom na svjetlo, refleksije, teksture i detalje. Fokus je bio na stvaranju osjećaja — ne samo objavi pića, već prenošenju energije prostora kroz kadar. Vođenje profila uključivalo je: planiranje sadržaja, fotografiranje i video produkciju, izradu vizualnih objava i story sadržaja, promociju evenata i posebnih ponuda. Feed je razvijan kao vizualno konzistentna cjelina, s jasno definiranim tonom komunikacije i estetikom koja prati identitet brenda. Cilj je bio povećati prepoznatljivost, angažman i broj rezervacija putem društvenih mreža.'
+      }
+    ]
   },
   {
     id: 'boom-burgers',
-    title: 'Boom burgers & bbq',
+    title: 'Boom Burgers & BBQ',
     year: 2025,
+    kicker: 'VIDEO PRODUCTION',
     image: brokoImg,
     layout: 'default',
-    client: 'Boom burgers & bbq',
-    services: 'Promo video, foto, social',
-    location: 'Hrvatska',
-    tagline: 'Burgersi i roštilj koji rade bum.',
-    story: 'Boom donosi energičan brand hrane. Snimili smo promo koji ističe porcije, grill i atmosferu uživanja.',
-    approach: 'Brzi rezovi, appetizing kadrovi hrane i ekipa.',
-    tags: ['HoReCa', 'Promo']
+    client: 'Boom Burgers & BBQ',
+    services: 'Promo video povodom rebrandinga',
+    location: 'Osijek, Hrvatska',
+    tagline: 'Novo poglavlje. Ista priča.',
+    story:
+      'Povodom rebrandinga, cilj je bio predstaviti novu vizualnu eru Boom Burgers & BBQ na drugačiji, kreativniji način. Umjesto klasičnog prikaza hrane, odlučili smo ispričati priču kroz koncept "breaking news" — kao da je rebranding vijest dana.',
+    approach:
+      'Inspiraciju smo pronašli u estetici starih novina i editorial dizajnu. Korišten je newspaper stil s tipografijom koja podsjeća na tiskane naslove, kolumne i vizualnu strukturu naslovnice. Minimalistički pristup bez prikaza hrane dodatno je naglasio ozbiljnost promjene i fokus stavio na brand transformaciju.',
+    tags: ['Video produkcija', 'Rebranding', 'Promo'],
+    sections: [
+      {
+        title: 'Vizija',
+        content:
+          'Povodom rebrandinga, cilj je bio predstaviti novu vizualnu eru Boom Burgers & BBQ na drugačiji, kreativniji način. Umjesto klasičnog prikaza hrane, odlučili smo ispričati priču kroz koncept "breaking news" — kao da je rebranding vijest dana. Video je trebao biti upečatljiv, drugačiji i odmah zaustaviti scroll na društvenim mrežama.'
+      },
+      {
+        title: 'Naš pristup',
+        content:
+          'Inspiraciju smo pronašli u estetici starih novina i editorial dizajnu. Korišten je newspaper stil s tipografijom koja podsjeća na tiskane naslove, kolumne i vizualnu strukturu naslovnice. Kroz animirane kadrove istaknuli smo novo ime / vizualni identitet, naglasili poruke rebrandinga i izgradili osjećaj "velike objave". Minimalistički pristup bez prikaza hrane dodatno je naglasio ozbiljnost promjene i fokus stavio na brand transformaciju.'
+      },
+      {
+        title: 'Promo video',
+        content:
+          'Video je strukturiran kao dinamična naslovnica u pokretu — headline, podnaslovi, istaknute poruke i grafički elementi koji evociraju tiskane medije. Optimiziran je za društvene mreže i lansiran kao glavni komunikacijski materijal prilikom predstavljanja novog identiteta. Rezultat je konceptualno snažan video koji se izdvaja od tipičnih food promo formata i jasno komunicira početak nove faze brenda.'
+      }
+    ]
   },
   {
     id: 'ring-room',
     title: 'Ring Room',
     year: 2025,
+    kicker: 'BRANDING',
     image: futuraImg,
     layout: 'default',
     client: 'Ring Room',
-    services: 'Brand video, foto',
-    location: 'Hrvatska',
-    tagline: 'Prostor s karakterom.',
-    story: 'Ring Room je multifunkcionalni prostor. Vizualna priča naglašava arhitekturu, događaje i mogućnosti korištenja.',
-    approach: 'Čisti kadrovi, prikaz prostora i atmosfere.',
-    tags: ['Branding', 'Prostor']
+    services: 'Branding',
+    location: 'Osijek, Hrvatska',
+    tagline: 'Mjesto gdje energija ulazi u ring.',
+    story:
+      'Ring Room je self service prostor s ringom za borilačke treninge, sparinge i individualni rad. Cilj je bio razviti identitet koji komunicira snagu, disciplinu i respekt, ali i modernu, urbanu estetiku.',
+    approach:
+      'Vizualni identitet temelji se na jasnoj, snažnoj tipografiji i čistim, kontrastnim kompozicijama koje podsjećaju na sportske plakate i fight event vizuale. Naglasak je stavljen na minimalizam, geometriju ringa i snažan, autoritativan ton komunikacije.',
+    tags: ['Branding', 'Sport', 'Self service'],
+    sections: [
+      {
+        title: 'Vizija',
+        content:
+          'Ring Room je self service prostor s ringom za borilačke treninge, sparinge i individualni rad. Koncept je moderan i fleksibilan — korisnici samostalno rezerviraju termin i koriste prostor bez klasične recepcije ili stalnog osoblja. Cilj je bio razviti identitet koji komunicira snagu, disciplinu i respekt, ali i modernu, urbanu estetiku.'
+      },
+      {
+        title: 'Naš pristup',
+        content:
+          'Vizualni identitet temelji se na jasnoj, snažnoj tipografiji i čistim, kontrastnim kompozicijama koje podsjećaju na sportske plakate i fight event vizuale. Naglasak je stavljen na: minimalizam, geometriju ringa (linije, kutovi, kvadrat), snažan, autoritativan ton komunikacije. Brend je oblikovan tako da djeluje ozbiljno i profesionalno, ali dovoljno suvremeno za mlađu, digitalno aktivnu publiku.'
+      },
+      {
+        title: 'Vizualni identitet',
+        content:
+          'Razvijen je sustav koji se lako primjenjuje na: branding unutar prostora (zidovi, pod, ring), digitalne platforme i rezervacijski sustav, društvene mreže, promotivne materijale. Kontrastne boje i čiste linije stvaraju osjećaj fokusa i intenziteta — bez vizualnog šuma.'
+      }
+    ]
   },
   {
     id: 'liros',
@@ -1496,6 +1567,24 @@ watch(
     font-size: 2.4rem;
     letter-spacing: -1.5px;
     margin-bottom: 2rem;
+  }
+}
+
+/* Very small phones: prevent hero text overlap/overflow */
+@media (max-width: 400px) {
+  .hero {
+    padding: 5rem 1rem 2rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
   }
 }
 </style>
