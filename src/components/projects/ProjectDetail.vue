@@ -30,8 +30,12 @@
       </div>
     </div>
 
-    <div class="hero-media">
-      <img :src="project.image" :alt="project.title" />
+    <div class="hero-media hero-media-grid">
+      <template v-for="(img, i) in galleryImages" :key="i">
+        <div class="hero-media-cell">
+          <img :src="img" :alt="`${project.title} – ${i + 1}`" />
+        </div>
+      </template>
     </div>
 
     <div class="content-grid" :class="{ 'content-grid-sections': project.sections?.length }">
@@ -70,7 +74,9 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   project: {
     type: Object,
     required: true
@@ -78,6 +84,16 @@ defineProps({
 })
 
 defineEmits(['back'])
+
+/** 4 images for 2x2 grid: use project.images if present, else repeat main image */
+const galleryImages = computed(() => {
+  const imgs = props.project.images
+  if (imgs && Array.isArray(imgs) && imgs.length >= 4) {
+    return imgs.slice(0, 4)
+  }
+  const main = props.project.image
+  return main ? [main, main, main, main] : []
+})
 </script>
 
 <style scoped>
@@ -169,15 +185,35 @@ defineEmits(['back'])
 }
 
 .hero-media {
-  border-radius: 14px;
+  border-radius: 20px;
   overflow: hidden;
   margin-bottom: 3.5rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 40px rgba(238, 6, 6, 0.35), 0 0 80px rgba(238, 6, 6, 0.2);
 }
 
 .hero-media img {
   width: 100%;
   display: block;
+  object-fit: cover;
+}
+
+.hero-media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
+  aspect-ratio: 1;
+}
+
+.hero-media-cell {
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-media-cell img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -223,6 +259,16 @@ defineEmits(['back'])
 }
 
 @media (max-width: 768px) {
+  .hero-media-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    aspect-ratio: auto;
+  }
+
+  .hero-media-cell {
+    aspect-ratio: 4 / 3;
+  }
+
   .project-detail {
     padding: 6.5rem var(--page-horizontal-padding) 4.5rem;
   }

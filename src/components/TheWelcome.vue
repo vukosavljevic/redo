@@ -159,6 +159,46 @@ import omegaImg from '@/assets/Omega.png'
 import soba23Img from '@/assets/Soba23.png'
 import theraImg from '@/assets/Thera.png'
 import koncertImg from '@/assets/Koncert.png'
+import enpr1 from '@/assets/EnPrimeur/enpr1.jpeg'
+import enpr2 from '@/assets/EnPrimeur/enpr2.jpeg'
+import enpr3 from '@/assets/EnPrimeur/enpr3.jpeg'
+import enpr4 from '@/assets/EnPrimeur/enpr4.jpeg'
+import pv87 from '@/assets/PostolarVarga/87.png'
+import pv106 from '@/assets/PostolarVarga/106.png'
+import pv109 from '@/assets/PostolarVarga/109.png'
+import pv114 from '@/assets/PostolarVarga/114.png'
+import fut1 from '@/assets/Futurra/IMG-20251020-WA0020(3).jpg'
+import fut2 from '@/assets/Futurra/IMG-20251021-WA0045(1) (1).jpg'
+import fut3 from '@/assets/Futurra/IMG-20251022-WA0024.jpg'
+import fut4 from '@/assets/Futurra/IMG-20251022-WA0030.jpg'
+import wo1 from '@/assets/WineOs/wineos1.jpeg'
+import wo2 from '@/assets/WineOs/wineos2.jpeg'
+import wo3 from '@/assets/WineOs/wineos3.jpeg'
+import wo4 from '@/assets/WineOs/wineos4.jpeg'
+import lm2 from '@/assets/LaMedussa/la_medussa_final2.png'
+import lm3 from '@/assets/LaMedussa/la_medussa_final3.png'
+import lm4 from '@/assets/LaMedussa/la_medussa_final4.png'
+import lm6 from '@/assets/LaMedussa/la_medussa_final6.png'
+import pb1 from '@/assets/PivnicaBroko/broko1.jpeg'
+import pb2 from '@/assets/PivnicaBroko/broko4.jpeg'
+import pb3 from '@/assets/PivnicaBroko/1.png'
+import pb4 from '@/assets/PivnicaBroko/3.png'
+import sb1 from '@/assets/Soba23/Meni Ponedjeljak (3).png'
+import sb2 from '@/assets/Soba23/Meni Ponedjeljak (7).png'
+import sb3 from '@/assets/Soba23/Meni Ponedjeljak (8).png'
+import sb4 from '@/assets/Soba23/tradicija.png'
+import th1 from '@/assets/Thera/thera1.jpeg'
+import th2 from '@/assets/Thera/thera2.jpeg'
+import th3 from '@/assets/Thera/thera3.jpeg'
+import om1 from '@/assets/OmegaConceptBar/omega1.png'
+import om2 from '@/assets/OmegaConceptBar/omega2.png'
+import om3 from '@/assets/OmegaConceptBar/omega3.png'
+import rr1 from '@/assets/RingRoom/rr1.png'
+import rr2 from '@/assets/RingRoom/rr2.png'
+import lr1 from '@/assets/Liros/1.png'
+import lr2 from '@/assets/Liros/2.png'
+import lr3 from '@/assets/Liros/6.png'
+import lr4 from '@/assets/Liros/8.png'
 
 const route = useRoute()
 const router = useRouter()
@@ -172,6 +212,22 @@ const displayProgress = ref(0)
 const loaderShownAt = ref(Date.now())
 const loaderLeaving = ref(false)
 let displayProgressRaf = null
+let maxLoaderTimeoutId = null
+
+/** Max time to show loader (e.g. on slow mobile). After this, we show hero and let video play when ready. */
+const MAX_LOADER_MS = 5000
+
+function finishLoaderWithShortDelay() {
+  loadProgress.value = 100
+  if (!displayProgressRaf) displayProgressRaf = requestAnimationFrame(updateDisplayProgress)
+  const elapsed = Date.now() - loaderShownAt.value
+  const minDisplayMs = 2000
+  const holdAt100Ms = 500
+  const wait = Math.max(600, minDisplayMs - elapsed) + holdAt100Ms
+  setTimeout(() => {
+    loaderLeaving.value = true
+  }, wait)
+}
 
 const handleHeroVideoLoad = () => {
   isHeroVideoLoaded.value = true
@@ -201,15 +257,11 @@ function onHeroVideoProgress(e) {
 }
 
 function onHeroVideoCanPlayThrough() {
-  loadProgress.value = 100
-  if (!displayProgressRaf) displayProgressRaf = requestAnimationFrame(updateDisplayProgress)
-  const elapsed = Date.now() - loaderShownAt.value
-  const minDisplayMs = 2000
-  const holdAt100Ms = 500 // extra pause at 100% before transition
-  const wait = Math.max(600, minDisplayMs - elapsed) + holdAt100Ms
-  setTimeout(() => {
-    loaderLeaving.value = true
-  }, wait)
+  if (maxLoaderTimeoutId) {
+    clearTimeout(maxLoaderTimeoutId)
+    maxLoaderTimeoutId = null
+  }
+  finishLoaderWithShortDelay()
 }
 
 function onLoaderTransitionEnd(e) {
@@ -225,6 +277,7 @@ const projects = [
     title: 'En Primeur',
     year: 2026,
     image: enPrimeurImg,
+    images: [enpr1, enpr2, enpr3, enpr4],
     layout: 'default',
     client: 'En Primeur 2026',
     services: 'Event film, social media cutovi, foto',
@@ -245,6 +298,7 @@ const projects = [
     title: 'Postolar Varga',
     year: 2025,
     image: vargaImg,
+    images: [pv87, pv106, pv109, pv114],
     layout: 'default',
     client: 'Postolar Varga',
     services: 'Brand video, storytelling, foto',
@@ -265,6 +319,7 @@ const projects = [
     title: 'Promo video FUTURRA',
     year: 2025,
     image: futuraImg,
+    images: [fut1, fut2, fut3, fut4],
     layout: 'wide',
     client: 'FUTURRA',
     services: 'Promo video, motion, digital kampanja',
@@ -285,6 +340,7 @@ const projects = [
     title: 'Wineos',
     year: 2026,
     image: wineosImg,
+    images: [wo1, wo2, wo3, wo4],
     layout: 'default',
     client: 'Wineos Festival',
     services: 'Aftermovie, foto, social sadržaj',
@@ -305,6 +361,7 @@ const projects = [
     title: 'La Medussa',
     year: 2025,
     image: lamedusaImg,
+    images: [lm2, lm3, lm4, lm6],
     layout: 'default',
     client: 'La Medussa',
     services: 'Brand video, foto, social',
@@ -326,6 +383,7 @@ const projects = [
     year: 2025,
     kicker: 'SOCIAL MEDIA MANAGEMENT',
     image: brokoImg,
+    images: [pb1, pb2, pb3, pb4],
     layout: 'wide',
     client: 'Pivnica Broko',
     services: 'Sadržaj za društvene mreže',
@@ -346,6 +404,7 @@ const projects = [
     title: 'Soba 23 street food',
     year: 2025,
     image: soba23Img,
+    images: [sb1, sb2, sb3, sb4],
     layout: 'default',
     client: 'Soba 23',
     services: 'Brand video, foto, social',
@@ -364,6 +423,7 @@ const projects = [
     title: 'Thera fireplaces',
     year: 2024,
     image: theraImg,
+    images: [th1, th2, th3, th1],
     layout: 'default',
     client: 'Thera',
     services: 'Produkcija, foto, web',
@@ -412,6 +472,7 @@ const projects = [
     year: 2024,
     kicker: 'SOCIAL MEDIA',
     image: omegaImg,
+    images: [om1, om2, om3, om1],
     layout: 'default',
     client: 'Omega Concept Bar',
     services: 'Vođenje Instagram profila, content produkcija',
@@ -475,6 +536,7 @@ const projects = [
     year: 2025,
     kicker: 'BRANDING',
     image: futuraImg,
+    images: [rr1, rr2, rr1, rr2],
     layout: 'default',
     client: 'Ring Room',
     services: 'Branding',
@@ -508,6 +570,7 @@ const projects = [
     title: 'Liros rent-a-boat',
     year: 2025,
     image: lirosImg,
+    images: [lr1, lr2, lr3, lr4],
     layout: 'default',
     client: 'Liros',
     services: 'Promo video, foto, web',
@@ -642,6 +705,19 @@ watch(
       loaderShownAt.value = Date.now()
       if (displayProgressRaf) cancelAnimationFrame(displayProgressRaf)
       displayProgressRaf = null
+      // Cap loader time: on slow connections (e.g. mobile), show hero after MAX_LOADER_MS
+      if (maxLoaderTimeoutId) clearTimeout(maxLoaderTimeoutId)
+      maxLoaderTimeoutId = setTimeout(() => {
+        maxLoaderTimeoutId = null
+        if (showHeroLoader.value && !loaderLeaving.value) {
+          finishLoaderWithShortDelay()
+        }
+      }, MAX_LOADER_MS)
+    } else {
+      if (maxLoaderTimeoutId) {
+        clearTimeout(maxLoaderTimeoutId)
+        maxLoaderTimeoutId = null
+      }
     }
   }
 )
@@ -652,6 +728,13 @@ onMounted(() => {
     loaderShownAt.value = Date.now()
     displayProgress.value = 0
     document.body.style.overflow = showHeroLoader.value ? 'hidden' : ''
+    if (maxLoaderTimeoutId) clearTimeout(maxLoaderTimeoutId)
+    maxLoaderTimeoutId = setTimeout(() => {
+      maxLoaderTimeoutId = null
+      if (showHeroLoader.value && !loaderLeaving.value) {
+        finishLoaderWithShortDelay()
+      }
+    }, MAX_LOADER_MS)
   }
 })
 
