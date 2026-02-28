@@ -70,6 +70,20 @@
         {{ tag }}
       </span>
     </div>
+
+    <div v-if="project.promoVideoUrl" class="promo-video-block">
+      <h2 class="promo-video-title"><span class="promo-video-slash">/</span> {{ project.promoVideoTitle || 'PROMO VIDEO' }}</h2>
+      <div class="promo-video-wrap">
+        <iframe
+          :src="project.promoVideoUrl"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        />
+      </div>
+    </div>
   </section>
 </template>
 
@@ -258,6 +272,45 @@ const galleryImages = computed(() => {
   color: rgba(255, 255, 255, 0.85);
 }
 
+.promo-video-block {
+  margin-top: 4rem;
+  padding: 0;
+}
+
+.promo-video-title {
+  font-family: 'Monument Extended', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.promo-video-slash {
+  color: #ee0606;
+}
+
+.promo-video-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.promo-video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 @media (max-width: 768px) {
   .hero-media-grid {
     grid-template-columns: 1fr;
@@ -306,6 +359,18 @@ const galleryImages = computed(() => {
   .tag {
     font-size: 0.7rem;
     padding: 0.3rem 0.8rem;
+  }
+
+  .promo-video-block {
+    margin-top: 3rem;
+  }
+
+  .promo-video-title {
+    font-size: 1.35rem;
+  }
+
+  .promo-video-wrap {
+    border-radius: 12%;
   }
 }
 </style>

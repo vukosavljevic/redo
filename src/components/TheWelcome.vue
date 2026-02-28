@@ -274,107 +274,111 @@ function onLoaderTransitionEnd(e) {
 const projects = [
   {
     id: 'en-primeur',
-    title: 'En Primeur',
+    title: 'En Primeur 26',
     year: 2026,
+    kicker: 'EVENT AFTERMOVIE',
     image: enPrimeurImg,
     images: [enpr1, enpr2, enpr3, enpr4],
     layout: 'default',
-    client: 'En Primeur 2026',
+    client: 'Graševina Croatica',
     services: 'Event film, social media cutovi, foto',
-    location: 'Osijek, Hrvatska',
-    tagline: 'Premium vinska priča ispričana kroz snažan vizualni identitet.',
+    location: 'Hotel Esplanade, Zagreb, Hrvatska',
+    tagline: 'Premium vinska priča ispričana kroz kratki aftermovie video',
     story:
-      'En Primeur je jedan od najznačajnijih vinskih događaja u regiji. Naš je zadatak bio prenijeti atmosferu elegancije, druženja i strasti prema vinu na način koji će jednako snažno djelovati i online.',
+      'Prenijeti atmosferu elegancije, druženja i strasti prema vinu na način koji će jednako snažno djelovati i online.',
     approach:
-      'Koristili smo kombinaciju dinamičnih kadrova, detaljnih close-upova i pažljivo tempiranog montažnog ritma. Fokus je stavljen na emociju – reakcije ljudi, teksturu vina, ambijent prostora – kako bi gledatelj imao dojam da je dio događaja.',
-    tags: ['Event', 'Video produkcija', 'Social kampanja'],
+      'Koristili smo kombinaciju dinamičnih kadrova, detaljnih close-upova i pažljivo tempiranog montažnog ritma. Fokus je stavljen na emociju - reakcije ljudi i ambijent prostora - kako bi gledatelj imao dojam da je dio događaja.',
+    tags: ['Event', 'Video produkcija'],
+    promoVideoUrl: 'https://www.youtube.com/embed/mkUFXPsoJTM?si=MYjZ5WhpAOkLM8q2',
+    promoVideoTitle: 'AFTERMOVIE',
     sections: [
-      { title: 'Vizija', content: 'Premium vinska priča ispričana kroz snažan vizualni identitet. Željeli smo da gledatelj osjeti emociju događaja – od prvog doživljaja do zadnjeg kadra.' },
-      { title: 'Naš pristup', content: 'Koristili smo kombinaciju dinamičnih kadrova, detaljnih close-upova i pažljivo tempiranog montažnog ritma. Fokus je stavljen na emociju – reakcije ljudi, teksturu vina, ambijent prostora – kako bi gledatelj imao dojam da je dio događaja.' }
+      { title: 'Zadatak', content: 'Prenijeti atmosferu elegancije, druženja i strasti prema vinu na način koji će jednako snažno djelovati i online.' },
+      { title: 'Naš pristup', content: 'Koristili smo kombinaciju dinamičnih kadrova, detaljnih close-upova i pažljivo tempiranog montažnog ritma. Fokus je stavljen na emociju - reakcije ljudi i ambijent prostora - kako bi gledatelj imao dojam da je dio događaja.' }
     ]
   },
   {
     id: 'postolar-varga',
     title: 'Postolar Varga',
     year: 2025,
+    kicker: 'SOCIAL MEDIA CONTENT',
     image: vargaImg,
     images: [pv87, pv106, pv109, pv114],
     layout: 'default',
     client: 'Postolar Varga',
-    services: 'Brand video, storytelling, foto',
+    services: 'Vođenje društvenih mreža, foto i video',
     location: 'Osijek, Hrvatska',
     tagline: 'Priča o zanatu, karakteru i vremenu koje ostavlja trag.',
     story:
-      'Za Postolara Vargu kreirali smo vizualnu priču koja kombinira tradiciju ručnog rada i suvremeni pristup brendiranju. Fokus je bio na teksturi materijala, detaljima procesa i osobnosti brenda.',
+      'Dugoročna suradnja kroz redovitu foto i video produkciju te razvoj vizualnog sadržaja za Postolar Varga.',
     approach:
-      'Snimali smo u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje – ruke u radu, alate, izraze lica – uz pažljivu zvučnu kulisu.',
-    tags: ['Brending', 'Storytelling', 'Craft'],
+      'Snimanje u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje - ruke u radu, alate, izraze lica - uz pažljivu zvučnu kulisu.',
+    tags: ['Social media managment', 'Storytelling', 'Craft'],
     sections: [
-      { title: 'Vizija', content: 'Priča o zanatu, karakteru i vremenu koje ostavlja trag. Željeli smo prenijeti autentičnost i toplinu radionice te ljudsku priču iza brenda.' },
-      { title: 'Naš pristup', content: 'Snimali smo u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje – ruke u radu, alate, izraze lica – uz pažljivu zvučnu kulisu.' }
+      { title: 'O suradnji', content: 'Dugoročna suradnja kroz redovitu foto i video produkciju te razvoj vizualnog sadržaja za Postolar Varga.' },
+      { title: 'Naš pristup', content: 'Snimanje u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje - ruke u radu, alate, izraze lica - uz pažljivu zvučnu kulisu.' }
     ]
   },
   {
     id: 'futurra',
     title: 'Promo video FUTURRA',
     year: 2025,
+    kicker: 'FACULTY PROMO VIDEO',
     image: futuraImg,
     images: [fut1, fut2, fut3, fut4],
     layout: 'wide',
-    client: 'FUTURRA',
-    services: 'Promo video, motion, digital kampanja',
-    location: 'Hrvatska',
-    tagline: 'Futurističan pogled na brand u pokretu.',
+    client: 'Fakultet turizma i ruralnog razvoja u Požegi',
+    services: 'Promo video, foto produkcija, digital kampanja',
+    location: 'Požega, Hrvatska',
+    tagline: 'Prikaz predavanja na fakultetu i studentskog života',
     story:
-      'FUTURRA je brand koji diše inovaciju. Cilj je bio isporučiti sadržaj koji izgleda moderno, brzo i digitalno – ali i dalje ostaje razumljiv široj publici.',
-    approach:
-      'Kombinirali smo snimljeni materijal s motion grafikom i tipografskim animacijama. Sve je podređeno ritmu glazbe, kako bi video imao snažan, almost „music video” karakter.',
-    tags: ['Promo', 'Motion design', 'Digital'],
+      'Izraditi promo video za promociju novog identiteta Fakulteta turizma i ruralnog razvoja u Požegi te realizirati prateću foto produkciju.',
+    tags: ['Promo', 'Education', 'Future'],
     sections: [
-      { title: 'Vizija', content: 'Futurističan pogled na brand u pokretu. Željeli smo vizualno prepoznatljiv promo koji odražava energiju i inovativnost brenda.' },
-      { title: 'Naš pristup', content: 'Kombinirali smo snimljeni materijal s motion grafikom i tipografskim animacijama. Sve je podređeno ritmu glazbe, kako bi video imao snažan, almost „music video” karakter.' }
+      { title: 'Zadatak', content: 'Izraditi promo video za promociju novog identiteta Fakulteta turizma i ruralnog razvoja u Požegi te realizirat prateću foto produkciju.' }
     ]
   },
   {
     id: 'wineos',
     title: 'Wineos',
     year: 2026,
+    kicker: 'PHOTO PRODUCTION',
     image: wineosImg,
     images: [wo1, wo2, wo3, wo4],
     layout: 'default',
-    client: 'Wineos Festival',
-    services: 'Aftermovie, foto, social sadržaj',
+    client: 'Wineos by Graševina Croatica',
+    services: 'Foto, social sadržaj',
     location: 'Osijek, Hrvatska',
     tagline: 'Festival vina, ljudi i posebne atmosfere.',
     story:
-      'Wineos je festival koji spaja vinoljupce, izlagače i kreativce. Željeli smo uhvatiti energiju događaja i isporučiti sadržaj koji će zvati publiku da dođe i iduće godine.',
+      'Wineos je festival koji spaja vinoljupce i izlagače. Željeli smo uhvatiti energiju događaja i isporučiti sadržaj koji će zvati publiku da dođe i iduće godine.',
     approach:
-      'Dinamična kamera, handheld kadrovi i fokus na emociju publike. Kroz montažu pratimo „putovanje” posjetitelja kroz festival – od prvog gutljaja do zadnjeg kadra večeri.',
-    tags: ['Event', 'Aftermovie'],
+      'Fokus na emociju publike. Kroz fotografiju pratimo „putovanje" posjetitelja kroz festival - od prvog gutljaja do zadnjeg kadra večeri.',
+    tags: ['Event', 'Emotion'],
     sections: [
-      { title: 'Vizija', content: 'Festival vina, ljudi i posebne atmosfere. Cilj je bio prenijeti doživljaj – od degustacije do druženja – kroz vizualnu priču.' },
-      { title: 'Naš pristup', content: 'Dinamična kamera, handheld kadrovi i fokus na emociju publike. Kroz montažu pratimo „putovanje” posjetitelja kroz festival – od prvog gutljaja do zadnjeg kadra večeri.' }
+      { title: 'Vizija', content: 'Wineos je festival koji spaja vinoljupce i izlagače. Željeli smo uhvatiti energiju događaja i isporučiti sadržaj koji će zvati publiku da dođe i iduće godine.' },
+      { title: 'Naš pristup', content: 'Fokus na emociju publike. Kroz fotografiju pratimo „putovanje" posjetitelja kroz festival - od prvog gutljaja do zadnjeg kadra večeri.' }
     ]
   },
   {
     id: 'la-medussa',
     title: 'La Medussa',
     year: 2025,
+    kicker: 'SOCIAL MEDIA CONTENT',
     image: lamedusaImg,
     images: [lm2, lm3, lm4, lm6],
     layout: 'default',
     client: 'La Medussa',
     services: 'Brand video, foto, social',
-    location: 'Jadran, Hrvatska',
-    tagline: 'Mediterranean vibe pretočen u vizualni identitet.',
+    location: 'Osijek, Hrvatska',
+    tagline: 'Kreiranje sadržaja za društvene mreže: foto produkcija i izrada dva Reels videa za spa centar.',
     story:
-      'La Medussa je brand koji živi na moru – opušteno, elegantno i s dozom luksuza. Kroz vizuale ističemo sunce, teksture kamena, more i detalje interijera.',
+      'La Medussa je spa centar sa raznovrsnom ponudom opušteno, elegantno i s dozom luksuza.',
     approach:
-      'Koristili smo tople tonove, spore pokrete kamere i naglasak na detaljima. Cilj je bio stvoriti osjećaj ljetne večeri uz more, koji gledatelj „osjeti” već nakon nekoliko sekundi.',
-    tags: ['Hospitality', 'Lifestyle'],
+      'Koristili smo tople tonove, spore pokrete kamere i naglasak na detaljima. Cilj je bio stvoriti osjećaj opuštanja koji gledatelj „osjeti" u prvih par sekundi videa.',
+    tags: ['Spa center', 'Headspa'],
     sections: [
-      { title: 'Vizija', content: 'Mediterranean vibe pretočen u vizualni identitet. Željeli smo da gledatelj odmah osjeti atmosferu jadranskog ljeta i luksuznog doživljaja.' },
-      { title: 'Naš pristup', content: 'Koristili smo tople tonove, spore pokrete kamere i naglasak na detaljima. Cilj je bio stvoriti osjećaj ljetne večeri uz more, koji gledatelj „osjeti” već nakon nekoliko sekundi.' }
+      { title: 'Vizija', content: 'La Medussa je spa centar sa raznovrsnom ponudom opušteno, elegantno i s dozom luksuza.' },
+      { title: 'Naš pristup', content: 'Koristili smo tople tonove, spore pokrete kamere i naglasak na detaljima. Cilj je bio stvoriti osjećaj opuštanja koji gledatelj „osjeti" u prvih par sekundi videa.' }
     ]
   },
   {
@@ -390,145 +394,100 @@ const projects = [
     location: 'Osijek, Hrvatska',
     tagline: 'Mjesto za ekipu, priču i dobru hranu.',
     story:
-      'Za Pivnicu Broko gradili smo vizualnu priču oko atmosfere – društvo, smijeh, glazba i dobra hrana u fokusu. Nije riječ samo o lokalu, nego o mjestu na koje se ljudi vraćaju.',
+      'Za Pivnicu Broko gradimo vizualnu priču oko atmosfere – društvo, smijeh, glazba i hrana/piće u fokusu. Nije riječ samo o lokalu, nego o mjestu na koje se ljudi vraćaju.',
     approach:
-      'Brži rezovi, energična glazba i fokus na izrazima lica te detaljima interijera. Kroz kadar približavamo gledatelju osjećaj večeri provedene u Broku.',
-    tags: ['HoReCa', 'Social media'],
+      'Kroz kadrove približavamo gledatelju osjećaj koji može imati u Broku.',
+    tags: ['BBQ', 'Social media', 'PUB', 'Hospitality'],
     sections: [
-      { title: 'Vizija', content: 'Mjesto za ekipu, priču i dobru hranu. Cilj je bio prenijeti energiju i toplinu lokala te pozvati gledatelja da dođe i doživi.' },
-      { title: 'Naš pristup', content: 'Brži rezovi, energična glazba i fokus na izrazima lica te detaljima interijera. Kroz kadar približavamo gledatelju osjećaj večeri provedene u Broku.' }
+      { title: 'Vizija', content: 'Za Pivnicu Broko gradimo vizualnu priču oko atmosfere – društvo, smijeh, glazba i hrana/piće u fokusu. Nije riječ samo o lokalu, nego o mjestu na koje se ljudi vraćaju.' },
+      { title: 'Naš pristup', content: 'Kroz kadrove približavamo gledatelju osjećaj koji može imati u Broku.' }
     ]
   },
   {
     id: 'soba-23',
     title: 'Soba 23 street food',
     year: 2025,
+    kicker: 'SOCIAL MEDIA MANAGEMENT',
     image: soba23Img,
     images: [sb1, sb2, sb3, sb4],
     layout: 'default',
-    client: 'Soba 23',
-    services: 'Brand video, foto, social',
+    client: 'Soba 23 street food',
+    services: 'Sadržaj za društvene mreže',
     location: 'Osijek, Hrvatska',
     tagline: 'Street food s karakterom.',
-    story: 'Soba 23 donosi autentičan street food doživljaj. Kreirali smo vizualnu priču koja ističe atmosferu, hranu i ekipu.',
-    approach: 'Dinamični kadrovi i fokus na detaljima hrane i ambijenta.',
-    tags: ['HoReCa', 'Branding'],
+    story: 'Soba 23 donosi autentičan street food doživljaj. Kreiramo vizualnu priču koja ističe hranu i ekipu.',
+    approach: 'Dinamični kadrovi i fokus na detaljima hrane i ambijenta. Također kreiranjem objava svakodnevnih dnevnih menija također potiče se interakcija sa publikom.',
+    tags: ['Daily menu', 'Hospitality', 'Social'],
     sections: [
-      { title: 'Vizija', content: 'Street food s karakterom. Željeli smo prenijeti energiju i autentičnost brenda te pozvati gledatelja da dođe i proba.' },
-      { title: 'Naš pristup', content: 'Dinamični kadrovi i fokus na detaljima hrane i ambijenta. Vizualna priča gradi se kroz bliske kadrove jela, ekipe i atmosfere lokala.' }
+      { title: 'Vizija', content: 'Soba 23 donosi autentičan street food doživljaj. Kreiramo vizualnu priču koja ističe hranu i ekipu.' },
+      { title: 'Naš pristup', content: 'Dinamični kadrovi i fokus na detaljima hrane i ambijenta. Također kreiranjem objava svakodnevnih dnevnih menija također potiče se interakcija sa publikom.' }
     ]
   },
   {
     id: 'thera',
     title: 'Thera fireplaces',
     year: 2024,
+    kicker: 'BRANDING & SOCIAL MEDIA MANAGEMENT',
     image: theraImg,
     images: [th1, th2, th3, th1],
     layout: 'default',
-    client: 'Thera',
-    services: 'Produkcija, foto, web',
-    location: 'Hrvatska',
+    client: 'Thera Hrvatska',
+    services: 'Branding, sadržaj za društvene mreže',
+    location: 'Osijek, Hrvatska',
     tagline: 'Vatra i dizajn u jednom.',
-    story: 'Thera fireplaces kombinira kvalitetnu produkciju kamina s modernim dizajnom. Vizualna priča naglašava materijal i toplinu.',
+    story: 'Thera fireplaces kombinira kvalitetnu proizvodnju prodaju kamina s modernim dizajnom. Vizualna priča naglašava materijal i toplinu.',
     approach: 'Elegantni kadrovi, naglasak na detaljima i ambijentu.',
-    tags: ['Produkcija', 'Branding'],
+    tags: ['Social', 'Branding'],
     sections: [
-      { title: 'Vizija', content: 'Vatra i dizajn u jednom. Cilj je bio predstaviti brend kroz kvalitetu proizvoda, estetiku i osjećaj topline koji kamin donosi u prostor.' },
-      { title: 'Naš pristup', content: 'Elegantni kadrovi, naglasak na detaljima i ambijentu. Snimali smo proizvode u kontekstu interijera kako bismo prenijeli i funkcionalnost i dizajn.' }
+      { title: 'Vizija', content: 'Thera fireplaces kombinira kvalitetnu proizvodnju prodaju kamina s modernim dizajnom. Vizualna priča naglašava materijal i toplinu.' },
+      { title: 'Naš pristup', content: 'Elegantni kadrovi, naglasak na detaljima i ambijentu.' }
     ]
   },
   {
     id: 'dubioza',
-    title: 'Dubioza Rent a Bar',
+    title: 'Dubioza rent-a-bar',
     year: 2025,
-    kicker: 'WEB & BRANDING',
+    kicker: 'BRANDING, WEB, SOCIAL MEDIA',
     image: dubiozaImg,
     layout: 'default',
-    client: 'Dubioza Rent a Bar',
-    services: 'Web stranica za rezervacije, Branding',
+    client: 'Dubioza rent-a-bar',
+    services: 'Web stranica za rezervacije, Branding, Foto',
     location: 'Osijek, Hrvatska',
-    tagline: 'Mjesto gdje zabava izlazi na slobodu.',
-    story:
-      'Dubioza Rent a Bar je prostor za najam namijenjen privatnim proslavama, rođendanima i manjim eventima. Cilj je bio stvoriti identitet koji je drugačiji, provokativan i odmah prepoznatljiv na tržištu — prostor koji komunicira karakter, stav i dozu ironije.',
-    approach:
-      'Vizualni identitet temeljen je na tipografiji inspiriranoj zatvorskim oznakama i službenim tipografskim stilovima koji asociraju na zakon, red i autoritet. Kontrast između "strogog" vizualnog identiteta i opuštene party atmosfere prostora stvara zanimljivu napetost i diferencijaciju na tržištu.',
-    tags: ['Web', 'Branding', 'Event space'],
-    sections: [
-      {
-        title: 'Vizija',
-        content:
-          'Dubioza Rent a Bar je prostor za najam namijenjen privatnim proslavama, rođendanima i manjim eventima. Cilj je bio stvoriti identitet koji je drugačiji, provokativan i odmah prepoznatljiv na tržištu — prostor koji komunicira karakter, stav i dozu ironije. Brend je zamišljen kao mjesto gdje se pravila svakodnevice ostavljaju vani, a zabava "izlazi na slobodu".'
-      },
-      {
-        title: 'Naš pristup',
-        content:
-          'Vizualni identitet temeljen je na tipografiji inspiriranoj zatvorskim oznakama i službenim tipografskim stilovima koji asociraju na zakon, red i autoritet. Ovaj koncept nije slučajan — referira se na osobnu priču vlasnika i daje brendu autentičnost te snažan karakter. Kontrast između "strogog" vizualnog identiteta i opuštene party atmosfere prostora stvara zanimljivu napetost i diferencijaciju na tržištu.'
-      }
-    ]
+    tagline: 'Rent-a-bar u srcu osječke Tvrđe',
+    story: 'Dubioza Rent a Bar je prostor za najam namijenjen privatnim proslavama, rođendanima i manjim eventima. Cilj je bio stvoriti identitet koji je drugačiji, provokativan i odmah prepoznatljiv na tržištu — prostor koji komunicira karakter, stav i dozu ironije. Brend je zamišljen kao mjesto gdje se pravila svakodnevice ostavljaju vani, a zabava "izlazi na slobodu".',
+    approach: 'Vizualni identitet temeljen je na tipografiji inspiriranoj zatvorskim oznakama i službenim tipografskim stilovima koji asociraju na zakon, red i autoritet. Ovaj koncept nije slučajan — referira se na osobnu priču vlasnika i daje brendu autentičnost te snažan karakter. Kontrast između "strogog" vizualnog identiteta i opuštene party atmosfere prostora stvara zanimljivu napetost i diferencijaciju na tržištu.',
+    tags: ['Web development', 'Payment system integration', 'Branding']
   },
   {
     id: 'omega-concept-bar',
     title: 'Omega Concept Bar',
-    year: 2024,
-    kicker: 'SOCIAL MEDIA',
+    year: 2025,
+    kicker: 'SOCIAL MEDIA MANAGEMENT',
     image: omegaImg,
     images: [om1, om2, om3, om1],
     layout: 'default',
     client: 'Omega Concept Bar',
-    services: 'Vođenje Instagram profila, content produkcija',
-    location: 'Osijek, Hrvatska',
-    tagline: 'Mjesto gdje atmosfera ima karakter.',
-    story:
-      'Omega Concept Bar je lounge bar s modernim interijerom i naglašenim večernjim ambijentom. Cilj je bio pozicionirati bar kao premium, ali pristupačno mjesto za večernja druženja, izlaske i koktel iskustva — s fokusom na atmosferu, detalje i estetiku prostora.',
-    approach:
-      'Strategija komunikacije temeljila se na tri ključna segmenta: ambijent i atmosfera prostora, kokteli i ponuda, događanja i večernji vibe. Vizualni smjer bio je tamniji, elegantan i cinematic — s naglaskom na svjetlo, refleksije, teksture i detalje.',
-    tags: ['Social media', 'Instagram', 'Content produkcija'],
-    sections: [
-      {
-        title: 'Vizija',
-        content:
-          'Omega Concept Bar je lounge bar s modernim interijerom i naglašenim večernjim ambijentom. Cilj je bio pozicionirati bar kao premium, ali pristupačno mjesto za večernja druženja, izlaske i koktel iskustva — s fokusom na atmosferu, detalje i estetiku prostora. Instagram je trebao postati produžetak doživljaja iz lokala — vizualno snažan, konzistentan i prepoznatljiv.'
-      },
-      {
-        title: 'Naš pristup',
-        content:
-          'Strategija komunikacije temeljila se na tri ključna segmenta: ambijent i atmosfera prostora, kokteli i ponuda, događanja i večernji vibe. Vizualni smjer bio je tamniji, elegantan i cinematic — s naglaskom na svjetlo, refleksije, teksture i detalje. Fokus je bio na stvaranju osjećaja — ne samo objavi pića, već prenošenju energije prostora kroz kadar. Vođenje profila uključivalo je: planiranje sadržaja, fotografiranje i video produkciju, izradu vizualnih objava i story sadržaja, promociju evenata i posebnih ponuda. Feed je razvijan kao vizualno konzistentna cjelina, s jasno definiranim tonom komunikacije i estetikom koja prati identitet brenda. Cilj je bio povećati prepoznatljivost, angažman i broj rezervacija putem društvenih mreža.'
-      }
-    ]
+    services: 'Brand video, foto, social',
+    location: 'Hrvatska',
+    tagline: 'Concept & lounge bar, mjesto gdje atmosfera ima karakter.',
+    story: 'Cilj je bio pozicionirati bar kao premium, ali pristupačno mjesto za večernja druženja, izlaske i koktel iskustva — s fokusom na atmosferu, detalje i estetiku prostora.',
+    approach: 'Stilska kamera, topli tonovi i naglasak na detaljima.',
+    tags: ['HoReCa', 'Lifestyle']
   },
   {
     id: 'boom-burgers',
-    title: 'Boom Burgers & BBQ',
+    title: 'Boom burgers & bbq',
     year: 2025,
-    kicker: 'VIDEO PRODUCTION',
+    kicker: 'SOCIAL MEDIA CONTENT',
     image: brokoImg,
     layout: 'default',
-    client: 'Boom Burgers & BBQ',
-    services: 'Promo video povodom rebrandinga',
-    location: 'Osijek, Hrvatska',
-    tagline: 'Novo poglavlje. Ista priča.',
-    story:
-      'Povodom rebrandinga, cilj je bio predstaviti novu vizualnu eru Boom Burgers & BBQ na drugačiji, kreativniji način. Umjesto klasičnog prikaza hrane, odlučili smo ispričati priču kroz koncept "breaking news" — kao da je rebranding vijest dana.',
-    approach:
-      'Inspiraciju smo pronašli u estetici starih novina i editorial dizajnu. Korišten je newspaper stil s tipografijom koja podsjeća na tiskane naslove, kolumne i vizualnu strukturu naslovnice. Minimalistički pristup bez prikaza hrane dodatno je naglasio ozbiljnost promjene i fokus stavio na brand transformaciju.',
-    tags: ['Video produkcija', 'Rebranding', 'Promo'],
-    sections: [
-      {
-        title: 'Vizija',
-        content:
-          'Povodom rebrandinga, cilj je bio predstaviti novu vizualnu eru Boom Burgers & BBQ na drugačiji, kreativniji način. Umjesto klasičnog prikaza hrane, odlučili smo ispričati priču kroz koncept "breaking news" — kao da je rebranding vijest dana. Video je trebao biti upečatljiv, drugačiji i odmah zaustaviti scroll na društvenim mrežama.'
-      },
-      {
-        title: 'Naš pristup',
-        content:
-          'Inspiraciju smo pronašli u estetici starih novina i editorial dizajnu. Korišten je newspaper stil s tipografijom koja podsjeća na tiskane naslove, kolumne i vizualnu strukturu naslovnice. Kroz animirane kadrove istaknuli smo novo ime / vizualni identitet, naglasili poruke rebrandinga i izgradili osjećaj "velike objave". Minimalistički pristup bez prikaza hrane dodatno je naglasio ozbiljnost promjene i fokus stavio na brand transformaciju.'
-      },
-      {
-        title: 'Promo video',
-        content:
-          'Video je strukturiran kao dinamična naslovnica u pokretu — headline, podnaslovi, istaknute poruke i grafički elementi koji evociraju tiskane medije. Optimiziran je za društvene mreže i lansiran kao glavni komunikacijski materijal prilikom predstavljanja novog identiteta. Rezultat je konceptualno snažan video koji se izdvaja od tipičnih food promo formata i jasno komunicira početak nove faze brenda.'
-      }
-    ]
+    client: 'Boom burgers & bbq',
+    services: 'Promo video, foto, social',
+    location: 'Hrvatska',
+    tagline: 'Burgeri i roštilj koji rade boom.',
+    story: 'Povodom rebrandinga, cilj je bio predstaviti novu vizualnu eru Boom Burgers & BBQ na drugačiji, kreativniji način. Umjesto klasičnog prikaza hrane, odlučili smo ispričati priču kroz koncept "breaking news" — kao da je rebranding vijest dana.',
+    approach: 'Inspiraciju smo pronašli u estetici starih novina i editorial dizajnu. Korišten je newspaper stil s tipografijom koja podsjeća na tiskane naslove, kolumne i vizualnu strukturu naslovnice.',
+    tags: ['Social', 'Promo']
   },
   {
     id: 'ring-room',
@@ -539,102 +498,86 @@ const projects = [
     images: [rr1, rr2, rr1, rr2],
     layout: 'default',
     client: 'Ring Room',
-    services: 'Branding',
-    location: 'Osijek, Hrvatska',
-    tagline: 'Mjesto gdje energija ulazi u ring.',
-    story:
-      'Ring Room je self service prostor s ringom za borilačke treninge, sparinge i individualni rad. Cilj je bio razviti identitet koji komunicira snagu, disciplinu i respekt, ali i modernu, urbanu estetiku.',
-    approach:
-      'Vizualni identitet temelji se na jasnoj, snažnoj tipografiji i čistim, kontrastnim kompozicijama koje podsjećaju na sportske plakate i fight event vizuale. Naglasak je stavljen na minimalizam, geometriju ringa i snažan, autoritativan ton komunikacije.',
-    tags: ['Branding', 'Sport', 'Self service'],
-    sections: [
-      {
-        title: 'Vizija',
-        content:
-          'Ring Room je self service prostor s ringom za borilačke treninge, sparinge i individualni rad. Koncept je moderan i fleksibilan — korisnici samostalno rezerviraju termin i koriste prostor bez klasične recepcije ili stalnog osoblja. Cilj je bio razviti identitet koji komunicira snagu, disciplinu i respekt, ali i modernu, urbanu estetiku.'
-      },
-      {
-        title: 'Naš pristup',
-        content:
-          'Vizualni identitet temelji se na jasnoj, snažnoj tipografiji i čistim, kontrastnim kompozicijama koje podsjećaju na sportske plakate i fight event vizuale. Naglasak je stavljen na: minimalizam, geometriju ringa (linije, kutovi, kvadrat), snažan, autoritativan ton komunikacije. Brend je oblikovan tako da djeluje ozbiljno i profesionalno, ali dovoljno suvremeno za mlađu, digitalno aktivnu publiku.'
-      },
-      {
-        title: 'Vizualni identitet',
-        content:
-          'Razvijen je sustav koji se lako primjenjuje na: branding unutar prostora (zidovi, pod, ring), digitalne platforme i rezervacijski sustav, društvene mreže, promotivne materijale. Kontrastne boje i čiste linije stvaraju osjećaj fokusa i intenziteta — bez vizualnog šuma.'
-      }
-    ]
+    services: 'Branding, social media posts',
+    location: 'Hrvatska',
+    tagline: 'Prostor s karakterom.',
+    story: 'Ring Room je samoposložni multifunkcionalni prostor sa ringom te fitness spravama. Vizualna priča naglašava arhitekturu i mogućnosti korištenja.',
+    tags: ['Branding', 'Prostor']
   },
   {
     id: 'liros',
     title: 'Liros rent-a-boat',
     year: 2025,
+    kicker: 'SOCIAL MEDIA MANAGMENT',
     image: lirosImg,
     images: [lr1, lr2, lr3, lr4],
     layout: 'default',
     client: 'Liros',
-    services: 'Promo video, foto, web',
-    location: 'Hrvatska',
+    services: 'Vođenje društvenih mreža',
+    location: 'Pula, Hrvatska',
     tagline: 'Brodovi i more na dohvat ruke.',
     story: 'Liros nudi najam brodova. Kreirali smo promo koji predstavlja flotu, more i slobodu putovanja.',
-    approach: 'Zračni kadrovi, more i brodovi u fokusu.',
-    tags: ['Promo', 'Lifestyle']
+    approach: 'More i brodovi u fokusu.',
+    tags: ['Promo', 'Lifestyle', 'Rent']
   },
   {
     id: 'kameleon-security',
     title: 'Kameleon Security',
     year: 2025,
+    kicker: 'WEBSITE',
     image: kameleonImg,
     layout: 'default',
     client: 'Kameleon Security',
-    services: 'Brand video, web',
-    location: 'Hrvatska',
+    services: 'Web',
+    location: 'Osijek, Hrvatska',
     tagline: 'Sigurnost i pouzdanost u prvom planu.',
     story: 'Kameleon Security pruža usluge osiguranja. Vizualna priča naglašava profesionalnost i povjerenje.',
-    approach: 'Čisti, profesionalni kadrovi i kratak, jasan narativ.',
-    tags: ['Corporate', 'Branding']
+    tags: ['Corporate', 'Web']
   },
   {
     id: 'koncert-produkcija',
     title: 'Koncert produkcija',
-    year: 2025,
+    year: 2024,
+    kicker: 'WEBSITE',
     image: koncertImg,
     layout: 'default',
     client: 'Koncert produkcija',
-    services: 'Event film, live snimanje, foto',
-    location: 'Hrvatska',
-    tagline: 'Live glazba i energija na pozornici.',
-    story: 'Snimali smo koncerte i glazbene događaje. Fokus na izvedbi, publici i tehničkoj kvaliteti produkcije.',
-    approach: 'Multi-kamera montaža, dinamika i ritam glazbe.',
-    tags: ['Event', 'Live']
+    services: 'Web',
+    location: 'Osijek, Hrvatska',
+    tagline: 'Event produkcija na jednom mjestu',
+    story: 'Izrada web sjedišta za Koncert Produkciju, tvrtka specijalizirana za tehničko praćenje evenata, koncerta i dr. Najam razglasa, rasvijete, konstrukcija itd.',
+    approach: 'Tamno, žive boje, dinamičan izgled',
+    tags: ['Event', 'Produkcija']
   },
   {
     id: 'mix-auto',
     title: 'Mix auto',
     year: 2025,
+    kicker: 'WEBSITE',
     image: mixAutoImg,
     layout: 'default',
     client: 'Mix auto',
-    services: 'Promo video, foto',
+    services: 'Web',
     location: 'Hrvatska',
     tagline: 'Automobili i usluge u fokusu.',
-    story: 'Mix auto nudi usluge iz područja automobila. Kreirali smo vizualnu prezentaciju brenda i ponude.',
-    approach: 'Čisti kadrovi vozila i usluge.',
-    tags: ['Corporate', 'Promo']
+    story: 'Mix auto nudi usluge iz područja automobila (prodaja, otkup). Kreirali smo vizualnu prezentaciju brenda i ponude.',
+    approach: 'Jednostavna web stranica prilagođena svim uređajima',
+    tags: ['Car dealership', 'Web']
   },
   {
     id: 'vinum-academicum',
     title: 'Vinum Academicum',
     year: 2025,
+    kicker: 'Photo production & social',
     image: enPrimeurImg,
     layout: 'default',
     client: 'Vinum Academicum',
-    services: 'Event film, foto, social',
+    services: 'Foto, social, promo',
     location: 'Hrvatska',
-    tagline: 'Akademska vinska priča.',
-    story: 'Vinum Academicum povezuje edukaciju i vino. Snimili smo događaj i atmosferu koja spaja znanje i degustaciju.',
-    approach: 'Elegantna montaža, prikaz programa i sudionika.',
-    tags: ['Event', 'Edukacija']
+    tagline: 'Akademska vina zlatne doline.',
+    story: 'Vinum Academicum povezuje edukaciju i vino. Vinarija smještena na obroncima Papuka u Požeško-slavonskoj županiji, prostire se na 2 vinograda od ukupne površine 8 ha te proizvodi više sorti vina.',
+    approach: 'Ozbiljnost i personaliziranost',
+    tags: ['Winery', 'Photo', 'Social']
   }
 ]
 
