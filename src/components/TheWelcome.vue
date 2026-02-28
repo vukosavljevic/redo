@@ -62,10 +62,7 @@
 
     <!-- Projekti Section (izdvojeno u komponentu) -->
     <div class="projects-section">
-      <ProjectsGrid
-        :projects="displayedProjects"
-        @open="openProject"
-      />
+      <ProjectsGrid :projects="displayedProjects" @open="openProject" />
       <div v-if="hasMoreProjects" class="projects-show-more">
         <button
           type="button"
@@ -75,12 +72,7 @@
         >
           Prikaži više
         </button>
-        <button
-          type="button"
-          class="btn-show-more"
-          @click="showAllProjects = false"
-          v-else
-        >
+        <button type="button" class="btn-show-more" @click="showAllProjects = false" v-else>
           Prikaži manje
         </button>
       </div>
@@ -97,11 +89,11 @@
         </p>
         <div class="about-stats">
           <div class="stat-item">
-            <div class="stat-number">10+</div>
+            <div class="stat-number">21+</div>
             <div class="stat-label">Uspješnih projekata</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">5+</div>
+            <div class="stat-number">4+</div>
             <div class="stat-label">Godina iskustva</div>
           </div>
           <div class="stat-item">
@@ -132,11 +124,7 @@
 
   <!-- SINGLE PROJECT PAGE -->
   <section v-else-if="currentPage === 'project'" class="section">
-    <ProjectDetail
-      v-if="selectedProject"
-      :project="selectedProject"
-      @back="backToProjects"
-    />
+    <ProjectDetail v-if="selectedProject" :project="selectedProject" @back="backToProjects" />
   </section>
 </template>
 
@@ -145,6 +133,7 @@ import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import ProjectsGrid from './projects/ProjectsGrid.vue'
 import ProjectDetail from './projects/ProjectDetail.vue'
+
 import enPrimeurImg from '@/assets/en-primeur.png'
 import vargaImg from '@/assets/varga.png'
 import futuraImg from '@/assets/futura.png'
@@ -159,46 +148,68 @@ import omegaImg from '@/assets/Omega.png'
 import soba23Img from '@/assets/Soba23.png'
 import theraImg from '@/assets/Thera.png'
 import koncertImg from '@/assets/Koncert.png'
+import BoomImg from '@/assets/Boom.png'
+import VinumImg from '@/assets/Vinum.png'
+import RingRoomImg from '@/assets/RingRoom.png'
+
 import enpr1 from '@/assets/EnPrimeur/enpr1.jpeg'
 import enpr2 from '@/assets/EnPrimeur/enpr2.jpeg'
 import enpr3 from '@/assets/EnPrimeur/enpr3.jpeg'
 import enpr4 from '@/assets/EnPrimeur/enpr4.jpeg'
+
 import pv87 from '@/assets/PostolarVarga/87.png'
 import pv106 from '@/assets/PostolarVarga/106.png'
 import pv109 from '@/assets/PostolarVarga/109.png'
-import pv114 from '@/assets/PostolarVarga/114.png'
+import pv114 from '@/assets/PostolarVarga/114.jpg'
+
 import fut1 from '@/assets/Futurra/IMG-20251020-WA0020(3).jpg'
 import fut2 from '@/assets/Futurra/IMG-20251021-WA0045(1) (1).jpg'
 import fut3 from '@/assets/Futurra/IMG-20251022-WA0024.jpg'
 import fut4 from '@/assets/Futurra/IMG-20251022-WA0030.jpg'
+
 import wo1 from '@/assets/WineOs/wineos1.jpeg'
 import wo2 from '@/assets/WineOs/wineos2.jpeg'
 import wo3 from '@/assets/WineOs/wineos3.jpeg'
 import wo4 from '@/assets/WineOs/wineos4.jpeg'
+
 import lm2 from '@/assets/LaMedussa/la_medussa_final2.png'
 import lm3 from '@/assets/LaMedussa/la_medussa_final3.png'
 import lm4 from '@/assets/LaMedussa/la_medussa_final4.png'
 import lm6 from '@/assets/LaMedussa/la_medussa_final6.png'
+
 import pb1 from '@/assets/PivnicaBroko/broko1.jpeg'
 import pb2 from '@/assets/PivnicaBroko/broko4.jpeg'
 import pb3 from '@/assets/PivnicaBroko/1.png'
-import pb4 from '@/assets/PivnicaBroko/3.png'
+import pb4 from '@/assets/PivnicaBroko/10.png'
+
 import sb1 from '@/assets/Soba23/Meni Ponedjeljak (3).png'
 import sb2 from '@/assets/Soba23/Meni Ponedjeljak (7).png'
-import sb3 from '@/assets/Soba23/Meni Ponedjeljak (8).png'
-import sb4 from '@/assets/Soba23/tradicija.png'
+import sb3 from '@/assets/Soba23/tradicija.png'
+import sb4 from '@/assets/Soba23/tradicija1.png'
+
 import th1 from '@/assets/Thera/thera1.jpeg'
 import th2 from '@/assets/Thera/thera2.jpeg'
 import th3 from '@/assets/Thera/thera3.jpeg'
+
 import om1 from '@/assets/OmegaConceptBar/omega1.png'
 import om2 from '@/assets/OmegaConceptBar/omega2.png'
 import om3 from '@/assets/OmegaConceptBar/omega3.png'
+import om4 from '@/assets/OmegaConceptBar/omega4.png'
+
 import rr1 from '@/assets/RingRoom/rr1.png'
 import rr2 from '@/assets/RingRoom/rr2.png'
+import rr3 from '@/assets/RingRoom/rr3.png'
+import rr4 from '@/assets/RingRoom/rr4.png'
+
 import lr1 from '@/assets/Liros/1.png'
 import lr2 from '@/assets/Liros/2.png'
 import lr3 from '@/assets/Liros/6.png'
 import lr4 from '@/assets/Liros/8.png'
+
+import vnm1 from '@/assets/VinumAcademicum/vnm1.jpg'
+import vnm2 from '@/assets/VinumAcademicum/vnm2.jpg'
+import vnm3 from '@/assets/VinumAcademicum/vnm3.jpg'
+import vnm4 from '@/assets/VinumAcademicum/vnm4.jpg'
 
 const route = useRoute()
 const router = useRouter()
@@ -271,15 +282,25 @@ function onLoaderTransitionEnd(e) {
   }
 }
 
+/**
+ * PROMJENE:
+ * - Soba 23: dodana 3 prazna mjesta ispod (ukupno 7) za 1080x1920 (story) i iste širine kao postojeći grid.
+ * - Omega / Postolar Varga / Broko / Thera: prikaz 1080x1350 u full visini (bez rezanja) -> layout: 'feed-full'
+ * - En Primeur / Wineos: 1080x1920 full visina (bez rezanja) -> layout: 'story-full'
+ * - Futurra: grid od 10 (uključujući postojeće 4) -> layout: 'grid-10'
+ * - Dubioza / Mix Auto / Kameleon Security / Koncert produkcija: samo 1 slika + outerglow -> layout: 'single-glow'
+ * - Ring Room: 2 horizontalne jedna ispod druge + crveni outerglow -> layout: 'stack-2-horizontal-glow-red'
+ * - Ostalo ne dirano.
+ */
 const projects = [
   {
     id: 'en-primeur',
-    title: 'En Primeur 26',
+    title: 'En Primeur',
     year: 2026,
     kicker: 'EVENT AFTERMOVIE',
     image: enPrimeurImg,
     images: [enpr1, enpr2, enpr3, enpr4],
-    layout: 'default',
+    layout: 'story-full',
     client: 'Graševina Croatica',
     services: 'Event film, social media cutovi, foto',
     location: 'Hotel Esplanade, Zagreb, Hrvatska',
@@ -292,8 +313,16 @@ const projects = [
     promoVideoUrl: 'https://www.youtube.com/embed/mkUFXPsoJTM?si=MYjZ5WhpAOkLM8q2',
     promoVideoTitle: 'AFTERMOVIE',
     sections: [
-      { title: 'Zadatak', content: 'Prenijeti atmosferu elegancije, druženja i strasti prema vinu na način koji će jednako snažno djelovati i online.' },
-      { title: 'Naš pristup', content: 'Koristili smo kombinaciju dinamičnih kadrova, detaljnih close-upova i pažljivo tempiranog montažnog ritma. Fokus je stavljen na emociju - reakcije ljudi i ambijent prostora - kako bi gledatelj imao dojam da je dio događaja.' }
+      {
+        title: 'Zadatak',
+        content:
+          'Prenijeti atmosferu elegancije, druženja i strasti prema vinu na način koji će jednako snažno djelovati i online.'
+      },
+      {
+        title: 'Naš pristup',
+        content:
+          'Koristili smo kombinaciju dinamičnih kadrova, detaljnih close-upova i pažljivo tempiranog montažnog ritma. Fokus je stavljen na emociju - reakcije ljudi i ambijent prostora - kako bi gledatelj imao dojam da je dio događaja.'
+      }
     ]
   },
   {
@@ -303,7 +332,7 @@ const projects = [
     kicker: 'SOCIAL MEDIA CONTENT',
     image: vargaImg,
     images: [pv87, pv106, pv109, pv114],
-    layout: 'default',
+    layout: 'feed-full',
     client: 'Postolar Varga',
     services: 'Vođenje društvenih mreža, foto i video',
     location: 'Osijek, Hrvatska',
@@ -314,8 +343,16 @@ const projects = [
       'Snimanje u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje - ruke u radu, alate, izraze lica - uz pažljivu zvučnu kulisu.',
     tags: ['Social media managment', 'Storytelling', 'Craft'],
     sections: [
-      { title: 'O suradnji', content: 'Dugoročna suradnja kroz redovitu foto i video produkciju te razvoj vizualnog sadržaja za Postolar Varga.' },
-      { title: 'Naš pristup', content: 'Snimanje u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje - ruke u radu, alate, izraze lica - uz pažljivu zvučnu kulisu.' }
+      {
+        title: 'O suradnji',
+        content:
+          'Dugoročna suradnja kroz redovitu foto i video produkciju te razvoj vizualnog sadržaja za Postolar Varga.'
+      },
+      {
+        title: 'Naš pristup',
+        content:
+          'Snimanje u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje - ruke u radu, alate, izraze lica - uz pažljivu zvučnu kulisu.'
+      }
     ]
   },
   {
@@ -324,18 +361,19 @@ const projects = [
     year: 2025,
     kicker: 'FACULTY PROMO VIDEO',
     image: futuraImg,
-    images: [fut1, fut2, fut3, fut4],
-    layout: 'wide',
+    // 10 slotova (4 postojeće + 6 mjesta)
+    images: [fut1, fut2, fut3, fut4, null, null, null, null, null, null],
+    layout: 'grid-10',
     client: 'Fakultet turizma i ruralnog razvoja u Požegi',
     services: 'Promo video, foto produkcija, digital kampanja',
     location: 'Požega, Hrvatska',
     tagline: 'Prikaz predavanja na fakultetu i studentskog života',
     story:
       'Izraditi promo video za promociju novog identiteta Fakulteta turizma i ruralnog razvoja u Požegi te realizirati prateću foto produkciju.',
-    tags: ['Promo', 'Education', 'Future'],
-    sections: [
-      { title: 'Zadatak', content: 'Izraditi promo video za promociju novog identiteta Fakulteta turizma i ruralnog razvoja u Požegi te realizirat prateću foto produkciju.' }
-    ]
+    tags: ['Promo', 'Education', 'CORPORATE'],
+    promoVideoUrl: 'https://www.youtube.com/embed/OpDCJGkiqOE?si=3RZZK_iF2YqE48US',
+    promoVideoTitle: 'PROMO VIDEO',
+    sections: [{ title: 'Zadatak', content: 'Izraditi promo video za promociju novog identiteta Fakulteta turizma i ruralnog razvoja u Požegi te realizirat prateću foto produkciju.' }]
   },
   {
     id: 'wineos',
@@ -344,7 +382,7 @@ const projects = [
     kicker: 'PHOTO PRODUCTION',
     image: wineosImg,
     images: [wo1, wo2, wo3, wo4],
-    layout: 'default',
+    layout: 'story-full',
     client: 'Wineos by Graševina Croatica',
     services: 'Foto, social sadržaj',
     location: 'Osijek, Hrvatska',
@@ -355,8 +393,16 @@ const projects = [
       'Fokus na emociju publike. Kroz fotografiju pratimo „putovanje" posjetitelja kroz festival - od prvog gutljaja do zadnjeg kadra večeri.',
     tags: ['Event', 'Emotion'],
     sections: [
-      { title: 'Vizija', content: 'Wineos je festival koji spaja vinoljupce i izlagače. Željeli smo uhvatiti energiju događaja i isporučiti sadržaj koji će zvati publiku da dođe i iduće godine.' },
-      { title: 'Naš pristup', content: 'Fokus na emociju publike. Kroz fotografiju pratimo „putovanje" posjetitelja kroz festival - od prvog gutljaja do zadnjeg kadra večeri.' }
+      {
+        title: 'Vizija',
+        content:
+          'Wineos je festival koji spaja vinoljupce i izlagače. Željeli smo uhvatiti energiju događaja i isporučiti sadržaj koji će zvati publiku da dođe i iduće godine.'
+      },
+      {
+        title: 'Naš pristup',
+        content:
+          'Fokus na emociju publike. Kroz fotografiju pratimo „putovanje" posjetitelja kroz festival - od prvog gutljaja do zadnjeg kadra večeri.'
+      }
     ]
   },
   {
@@ -371,14 +417,17 @@ const projects = [
     services: 'Brand video, foto, social',
     location: 'Osijek, Hrvatska',
     tagline: 'Kreiranje sadržaja za društvene mreže: foto produkcija i izrada dva Reels videa za spa centar.',
-    story:
-      'La Medussa je spa centar sa raznovrsnom ponudom opušteno, elegantno i s dozom luksuza.',
+    story: 'La Medussa je spa centar sa raznovrsnom ponudom opušteno, elegantno i s dozom luksuza.',
     approach:
       'Koristili smo tople tonove, spore pokrete kamere i naglasak na detaljima. Cilj je bio stvoriti osjećaj opuštanja koji gledatelj „osjeti" u prvih par sekundi videa.',
     tags: ['Spa center', 'Headspa'],
     sections: [
       { title: 'Vizija', content: 'La Medussa je spa centar sa raznovrsnom ponudom opušteno, elegantno i s dozom luksuza.' },
-      { title: 'Naš pristup', content: 'Koristili smo tople tonove, spore pokrete kamere i naglasak na detaljima. Cilj je bio stvoriti osjećaj opuštanja koji gledatelj „osjeti" u prvih par sekundi videa.' }
+      {
+        title: 'Naš pristup',
+        content:
+          'Koristili smo tople tonove, spore pokrete kamere i naglasak na detaljima. Cilj je bio stvoriti osjećaj opuštanja koji gledatelj „osjeti" u prvih par sekundi videa.'
+      }
     ]
   },
   {
@@ -388,18 +437,21 @@ const projects = [
     kicker: 'SOCIAL MEDIA MANAGEMENT',
     image: brokoImg,
     images: [pb1, pb2, pb3, pb4],
-    layout: 'wide',
+    layout: 'feed-full',
     client: 'Pivnica Broko',
     services: 'Sadržaj za društvene mreže',
     location: 'Osijek, Hrvatska',
     tagline: 'Mjesto za ekipu, priču i dobru hranu.',
     story:
       'Za Pivnicu Broko gradimo vizualnu priču oko atmosfere – društvo, smijeh, glazba i hrana/piće u fokusu. Nije riječ samo o lokalu, nego o mjestu na koje se ljudi vraćaju.',
-    approach:
-      'Kroz kadrove približavamo gledatelju osjećaj koji može imati u Broku.',
+    approach: 'Kroz kadrove približavamo gledatelju osjećaj koji može imati u Broku.',
     tags: ['BBQ', 'Social media', 'PUB', 'Hospitality'],
     sections: [
-      { title: 'Vizija', content: 'Za Pivnicu Broko gradimo vizualnu priču oko atmosfere – društvo, smijeh, glazba i hrana/piće u fokusu. Nije riječ samo o lokalu, nego o mjestu na koje se ljudi vraćaju.' },
+      {
+        title: 'Vizija',
+        content:
+          'Za Pivnicu Broko gradimo vizualnu priču oko atmosfere – društvo, smijeh, glazba i hrana/piće u fokusu. Nije riječ samo o lokalu, nego o mjestu na koje se ljudi vraćaju.'
+      },
       { title: 'Naš pristup', content: 'Kroz kadrove približavamo gledatelju osjećaj koji može imati u Broku.' }
     ]
   },
@@ -409,18 +461,24 @@ const projects = [
     year: 2025,
     kicker: 'SOCIAL MEDIA MANAGEMENT',
     image: soba23Img,
+    // 4 postojeće + 3 mjesta (1080x1920)
     images: [sb1, sb2, sb3, sb4],
-    layout: 'default',
+    layout: 'story-grid-7',
     client: 'Soba 23 street food',
     services: 'Sadržaj za društvene mreže',
     location: 'Osijek, Hrvatska',
     tagline: 'Street food s karakterom.',
     story: 'Soba 23 donosi autentičan street food doživljaj. Kreiramo vizualnu priču koja ističe hranu i ekipu.',
-    approach: 'Dinamični kadrovi i fokus na detaljima hrane i ambijenta. Također kreiranjem objava svakodnevnih dnevnih menija također potiče se interakcija sa publikom.',
+    approach:
+      'Dinamični kadrovi i fokus na detaljima hrane i ambijenta. Također kreiranjem objava svakodnevnih dnevnih menija također potiče se interakcija sa publikom.',
     tags: ['Daily menu', 'Hospitality', 'Social'],
     sections: [
       { title: 'Vizija', content: 'Soba 23 donosi autentičan street food doživljaj. Kreiramo vizualnu priču koja ističe hranu i ekipu.' },
-      { title: 'Naš pristup', content: 'Dinamični kadrovi i fokus na detaljima hrane i ambijenta. Također kreiranjem objava svakodnevnih dnevnih menija također potiče se interakcija sa publikom.' }
+      {
+        title: 'Naš pristup',
+        content:
+          'Dinamični kadrovi i fokus na detaljima hrane i ambijenta. Također kreiranjem objava svakodnevnih dnevnih menija također potiče se interakcija sa publikom.'
+      }
     ]
   },
   {
@@ -430,32 +488,40 @@ const projects = [
     kicker: 'BRANDING & SOCIAL MEDIA MANAGEMENT',
     image: theraImg,
     images: [th1, th2, th3, th1],
-    layout: 'default',
+    layout: 'feed-full',
     client: 'Thera Hrvatska',
     services: 'Branding, sadržaj za društvene mreže',
     location: 'Osijek, Hrvatska',
     tagline: 'Vatra i dizajn u jednom.',
-    story: 'Thera fireplaces kombinira kvalitetnu proizvodnju prodaju kamina s modernim dizajnom. Vizualna priča naglašava materijal i toplinu.',
+    story:
+      'Thera fireplaces kombinira kvalitetnu proizvodnju prodaju kamina s modernim dizajnom. Vizualna priča naglašava materijal i toplinu.',
     approach: 'Elegantni kadrovi, naglasak na detaljima i ambijentu.',
     tags: ['Social', 'Branding'],
     sections: [
-      { title: 'Vizija', content: 'Thera fireplaces kombinira kvalitetnu proizvodnju prodaju kamina s modernim dizajnom. Vizualna priča naglašava materijal i toplinu.' },
+      {
+        title: 'Vizija',
+        content:
+          'Thera fireplaces kombinira kvalitetnu proizvodnju prodaju kamina s modernim dizajnom. Vizualna priča naglašava materijal i toplinu.'
+      },
       { title: 'Naš pristup', content: 'Elegantni kadrovi, naglasak na detaljima i ambijentu.' }
     ]
   },
   {
     id: 'dubioza',
     title: 'Dubioza rent-a-bar',
-    year: 2025,
+    year: 2024,
     kicker: 'BRANDING, WEB, SOCIAL MEDIA',
     image: dubiozaImg,
-    layout: 'default',
+    images: [dubiozaImg],
+    layout: 'single-glow',
     client: 'Dubioza rent-a-bar',
     services: 'Web stranica za rezervacije, Branding, Foto',
     location: 'Osijek, Hrvatska',
     tagline: 'Rent-a-bar u srcu osječke Tvrđe',
-    story: 'Dubioza Rent a Bar je prostor za najam namijenjen privatnim proslavama, rođendanima i manjim eventima. Cilj je bio stvoriti identitet koji je drugačiji, provokativan i odmah prepoznatljiv na tržištu — prostor koji komunicira karakter, stav i dozu ironije. Brend je zamišljen kao mjesto gdje se pravila svakodnevice ostavljaju vani, a zabava "izlazi na slobodu".',
-    approach: 'Vizualni identitet temeljen je na tipografiji inspiriranoj zatvorskim oznakama i službenim tipografskim stilovima koji asociraju na zakon, red i autoritet. Ovaj koncept nije slučajan — referira se na osobnu priču vlasnika i daje brendu autentičnost te snažan karakter. Kontrast između "strogog" vizualnog identiteta i opuštene party atmosfere prostora stvara zanimljivu napetost i diferencijaciju na tržištu.',
+    story:
+      'Dubioza Rent a Bar je prostor za najam namijenjen privatnim proslavama, rođendanima i manjim eventima. Cilj je bio stvoriti identitet koji je drugačiji, provokativan i odmah prepoznatljiv na tržištu — prostor koji komunicira karakter, stav i dozu ironije. Brend je zamišljen kao mjesto gdje se pravila svakodnevice ostavljaju vani, a zabava "izlazi na slobodu".',
+    approach:
+      'Vizualni identitet temeljen je na tipografiji inspiriranoj zatvorskim oznakama i službenim tipografskim stilovima koji asociraju na zakon, red i autoritet. Ovaj koncept nije slučajan — referira se na osobnu priču vlasnika i daje brendu autentičnost te snažan karakter. Kontrast između "strogog" vizualnog identiteta i opuštene party atmosfere prostora stvara zanimljivu napetost i diferencijaciju na tržištu.',
     tags: ['Web development', 'Payment system integration', 'Branding']
   },
   {
@@ -464,13 +530,14 @@ const projects = [
     year: 2025,
     kicker: 'SOCIAL MEDIA MANAGEMENT',
     image: omegaImg,
-    images: [om1, om2, om3, om1],
-    layout: 'default',
+    images: [om1, om2, om3, om4],
+    layout: 'feed-full',
     client: 'Omega Concept Bar',
     services: 'Brand video, foto, social',
     location: 'Hrvatska',
     tagline: 'Concept & lounge bar, mjesto gdje atmosfera ima karakter.',
-    story: 'Cilj je bio pozicionirati bar kao premium, ali pristupačno mjesto za večernja druženja, izlaske i koktel iskustva — s fokusom na atmosferu, detalje i estetiku prostora.',
+    story:
+      'Cilj je bio pozicionirati bar kao premium, ali pristupačno mjesto za večernja druženja, izlaske i koktel iskustva — s fokusom na atmosferu, detalje i estetiku prostora.',
     approach: 'Stilska kamera, topli tonovi i naglasak na detaljima.',
     tags: ['HoReCa', 'Lifestyle']
   },
@@ -479,31 +546,33 @@ const projects = [
     title: 'Boom burgers & bbq',
     year: 2025,
     kicker: 'SOCIAL MEDIA CONTENT',
-    image: brokoImg,
+    image: BoomImg,
     layout: 'default',
     client: 'Boom burgers & bbq',
     services: 'Promo video, foto, social',
     location: 'Hrvatska',
     tagline: 'Burgeri i roštilj koji rade boom.',
-    story: 'Povodom rebrandinga, cilj je bio predstaviti novu vizualnu eru Boom Burgers & BBQ na drugačiji, kreativniji način. Umjesto klasičnog prikaza hrane, odlučili smo ispričati priču kroz koncept "breaking news" — kao da je rebranding vijest dana.',
-    approach: 'Inspiraciju smo pronašli u estetici starih novina i editorial dizajnu. Korišten je newspaper stil s tipografijom koja podsjeća na tiskane naslove, kolumne i vizualnu strukturu naslovnice.',
+    story:
+      'Povodom rebrandinga, cilj je bio predstaviti novu vizualnu eru Boom Burgers & BBQ na drugačiji, kreativniji način. Umjesto klasičnog prikaza hrane, odlučili smo ispričati priču kroz koncept "breaking news" — kao da je rebranding vijest dana.',
+    approach:
+      'Inspiraciju smo pronašli u estetici starih novina i editorial dizajnu. Korišten je newspaper stil s tipografijom koja podsjeća na tiskane naslove, kolumne i vizualnu strukturu naslovnice.',
     tags: ['Social', 'Promo']
   },
-  {
-    id: 'ring-room',
-    title: 'Ring Room',
-    year: 2025,
-    kicker: 'BRANDING',
-    image: futuraImg,
-    images: [rr1, rr2, rr1, rr2],
-    layout: 'default',
-    client: 'Ring Room',
-    services: 'Branding, social media posts',
-    location: 'Hrvatska',
-    tagline: 'Prostor s karakterom.',
-    story: 'Ring Room je samoposložni multifunkcionalni prostor sa ringom te fitness spravama. Vizualna priča naglašava arhitekturu i mogućnosti korištenja.',
-    tags: ['Branding', 'Prostor']
-  },
+  { id: 'ring-room', 
+  title: 'Ring Room', 
+  year: 2024, 
+  kicker: 'BRANDING', 
+  image: RingRoomImg, 
+  images: [rr2, rr4, rr1, rr3], 
+  layout: 'default', 
+  client: 'Ring Room', 
+  services: 'Branding, social media posts', 
+  location: 'Hrvatska', 
+  tagline: 'Prostor s karakterom.', 
+  story: 'Ring Room je samoposložni multifunkcionalni prostor sa ringom te fitness spravama. Vizualna priča naglašava arhitekturu i mogućnosti korištenja.', 
+  approach: 'Moderan dizajn, logotip i objave imaju motive tj. stil oktagona (ringa za borbe)', 
+  tags: ['Branding', 'Prostor'] 
+},
   {
     id: 'liros',
     title: 'Liros rent-a-boat',
@@ -526,7 +595,7 @@ const projects = [
     year: 2025,
     kicker: 'WEBSITE',
     image: kameleonImg,
-    layout: 'default',
+    layout: 'single-glow',
     client: 'Kameleon Security',
     services: 'Web',
     location: 'Osijek, Hrvatska',
@@ -540,12 +609,14 @@ const projects = [
     year: 2024,
     kicker: 'WEBSITE',
     image: koncertImg,
-    layout: 'default',
+    images: [koncertImg],
+    layout: 'single-glow',
     client: 'Koncert produkcija',
     services: 'Web',
     location: 'Osijek, Hrvatska',
     tagline: 'Event produkcija na jednom mjestu',
-    story: 'Izrada web sjedišta za Koncert Produkciju, tvrtka specijalizirana za tehničko praćenje evenata, koncerta i dr. Najam razglasa, rasvijete, konstrukcija itd.',
+    story:
+      'Izrada web sjedišta za Koncert Produkciju, tvrtka specijalizirana za tehničko praćenje evenata, koncerta i dr. Najam razglasa, rasvijete, konstrukcija itd.',
     approach: 'Tamno, žive boje, dinamičan izgled',
     tags: ['Event', 'Produkcija']
   },
@@ -555,7 +626,8 @@ const projects = [
     year: 2025,
     kicker: 'WEBSITE',
     image: mixAutoImg,
-    layout: 'default',
+    images: [mixAutoImg],
+    layout: 'single-glow',
     client: 'Mix auto',
     services: 'Web',
     location: 'Hrvatska',
@@ -569,13 +641,15 @@ const projects = [
     title: 'Vinum Academicum',
     year: 2025,
     kicker: 'Photo production & social',
-    image: enPrimeurImg,
+    image: VinumImg,
+    images: [vnm1, vnm3, vnm4, vnm2],
     layout: 'default',
     client: 'Vinum Academicum',
     services: 'Foto, social, promo',
     location: 'Hrvatska',
     tagline: 'Akademska vina zlatne doline.',
-    story: 'Vinum Academicum povezuje edukaciju i vino. Vinarija smještena na obroncima Papuka u Požeško-slavonskoj županiji, prostire se na 2 vinograda od ukupne površine 8 ha te proizvodi više sorti vina.',
+    story:
+      'Vinum Academicum povezuje edukaciju i vino. Vinarija smještena na obroncima Papuka u Požeško-slavonskoj županiji, prostire se na 2 vinograda od ukupne površine 8 ha te proizvodi više sorti vina.',
     approach: 'Ozbiljnost i personaliziranost',
     tags: ['Winery', 'Photo', 'Social']
   }
@@ -585,9 +659,7 @@ const selectedProject = ref(null)
 
 const INITIAL_PROJECTS_COUNT = 6
 const showAllProjects = ref(false)
-const displayedProjects = computed(() =>
-  showAllProjects.value ? projects : projects.slice(0, INITIAL_PROJECTS_COUNT)
-)
+const displayedProjects = computed(() => (showAllProjects.value ? projects : projects.slice(0, INITIAL_PROJECTS_COUNT)))
 const hasMoreProjects = computed(() => projects.length > INITIAL_PROJECTS_COUNT)
 
 // derived "current page" from route
@@ -606,8 +678,7 @@ const findProjectByRoute = () => {
     return
   }
   const id = route.params.id
-  selectedProject.value =
-    projects.find((p) => String(p.id) === String(id)) ?? projects[0] ?? null
+  selectedProject.value = projects.find((p) => String(p.id) === String(id)) ?? projects[0] ?? null
 }
 
 const openProject = (project) => {
@@ -880,7 +951,11 @@ watch(
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
   40% {
@@ -1098,9 +1173,9 @@ watch(
 .projects-title {
   font-family: 'Monument Extended', sans-serif;
   font-size: 4rem;
-  font-weight: 800;
+  font-weight: 550;
   color: #ffffff;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -1117,8 +1192,8 @@ watch(
 .title-text {
   font-family: 'Monument Extended', sans-serif;
   font-size: 4rem;
-  font-weight: 800;
-  letter-spacing: 3px;
+  font-weight: 450;
+  letter-spacing: 4px;
 }
 
 .projects-description {
@@ -1215,9 +1290,10 @@ watch(
 .project-name {
   font-family: 'Monument Extended', sans-serif;
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 350;
   color: #ffffff;
   line-height: 1.2;
+  letter-spacing: 5px;
 }
 
 .project-year {
@@ -1447,119 +1523,119 @@ watch(
   .hero {
     padding: 6rem var(--page-horizontal-padding) 2rem;
   }
-  
+
   .hero-content {
     max-width: 100%;
   }
-  
+
   .subtitle {
     font-size: 0.8rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .title {
     font-size: 2.5rem;
-    letter-spacing:3px;
+    letter-spacing: 3px;
     margin-bottom: 2rem;
   }
-  
+
   .description {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 3rem;
   }
-  
+
   .btn {
     padding: 0.875rem 2rem;
     font-size: 0.95rem;
   }
-  
+
   .buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .btn {
     width: 100%;
     max-width: 300px;
   }
-  
+
   .section {
     padding: 5rem var(--page-horizontal-padding);
   }
-  
+
   .section-label {
     font-size: 0.7rem;
     letter-spacing: 2px;
     margin-bottom: 2rem;
   }
-  
+
   .section-title {
     font-size: 2.75rem;
     letter-spacing: -1.5px;
     margin-bottom: 2rem;
   }
-  
+
   .section-description {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 3rem;
   }
-  
+
   .services-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .service-item {
     padding: 1.5rem;
   }
-  
+
   .projects-title {
     font-size: 2.1rem;
     margin-bottom: 1rem;
     gap: 0.5rem;
   }
-  
+
   .title-slash {
     font-size: 2.1rem;
   }
-  
+
   .title-text {
     font-size: 2.1rem;
   }
-  
+
   .projects-description {
     font-size: 0.9rem;
     margin-bottom: 2rem;
   }
-  
+
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .project-card-wide {
     grid-column: 1;
   }
-  
+
   .project-name {
     font-size: 1.25rem;
   }
-  
+
   .project-overlay {
     padding: 1.5rem;
   }
-  
+
   .about-stats {
     flex-direction: column;
     gap: 2rem;
   }
-  
+
   .stat-number {
     font-size: 2.5rem;
   }
-  
+
   .contact {
     padding: 5rem var(--page-horizontal-padding);
   }
@@ -1576,13 +1652,13 @@ watch(
   .contact-button-full {
     margin-top: 0.5rem;
   }
-  
+
   .contact-title {
     font-size: 3rem;
     letter-spacing: -1.5px;
     margin-bottom: 2rem;
   }
-  
+
   .contact-description {
     font-size: 1.1rem;
     line-height: 1.6;
