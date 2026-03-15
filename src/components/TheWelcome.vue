@@ -151,6 +151,8 @@ import koncertImg from '@/assets/Koncert.png'
 import BoomImg from '@/assets/Boom.png'
 import VinumImg from '@/assets/Vinum.png'
 import RingRoomImg from '@/assets/RingRoom.png'
+import GrafosImg from '@/assets/Grafos.png'
+import InhofImg from '@/assets/Inhof.png'
 
 import enpr1 from '@/assets/EnPrimeur/enpr1.jpeg'
 import enpr2 from '@/assets/EnPrimeur/enpr2.jpeg'
@@ -210,6 +212,12 @@ import vnm1 from '@/assets/VinumAcademicum/vnm1.jpg'
 import vnm2 from '@/assets/VinumAcademicum/vnm2.jpg'
 import vnm3 from '@/assets/VinumAcademicum/vnm3.jpg'
 import vnm4 from '@/assets/VinumAcademicum/vnm4.jpg'
+
+import grf1 from '@/assets/Grafos/2.png'
+import grf2 from '@/assets/Grafos/3.png'
+
+import inh1 from '@/assets/Inhof/ads.png'
+import inh2 from '@/assets/Inhof/ads (1).png'
 
 const route = useRoute()
 const router = useRouter()
@@ -356,8 +364,38 @@ const projects = [
     ]
   },
   {
+    id: 'grafos',
+    title: 'Građevinski i arhitektonski fakultet u Osijeku',
+    year: 2026,
+    kicker: 'Web stranica',
+    image: GrafosImg,
+    images: [grf1, grf2, grf1, grf2],
+    layout: 'feed-full',
+    client: 'Građevinski i arhitektonski fakultet u Osijeku',
+    services: 'Izrada web stranice',
+    location: 'Osijek, Hrvatska',
+    tagline: 'Urbanistički i arhitektonski kriteriji unaprjeđenja otpornosti grada — KRUG',
+    story:
+      'Za projekt KRUG razvili smo web platformu koja predstavlja istraživački projekt Građevinskog i arhitektonskog fakulteta u Osijeku. Stranica okuplja informacije o projektu, njegovim ciljevima, metodologiji i rezultatima, te služi kao javno dostupno mjesto za prezentaciju istraživanja vezanog uz prostor, krajolik i razvoj teritorija.',
+    approach:
+      'Snimanje u prirodnom okruženju radionice, koristeći kontrast svjetla i sjene kako bismo naglasili autentičnost i toplinu prostora. Narativ gradimo kroz detalje - ruke u radu, alate, izraze lica - uz pažljivu zvučnu kulisu.',
+    tags: ['Urbanism', 'Architecture', 'Web'],
+    sections: [
+      {
+        title: 'O suradnji',
+        content:
+          'Dugoročna suradnja kroz redovitu foto i video produkciju te razvoj vizualnog sadržaja za Postolar Varga.'
+      },
+      {
+        title: 'Naš pristup',
+        content:
+          'Prilikom dizajna i razvoja fokusirali smo se na jasnu strukturu sadržaja i suvremeni vizualni identitet koji prati temu prostora i urbanizma. Informacije su organizirane u pregledne sekcije koje omogućuju jednostavno istraživanje projekta, dok je dizajn prilagođen različitim uređajima kako bi sadržaj bio dostupan široj publici.'
+      }
+    ]
+  },
+  {
     id: 'futurra',
-    title: 'Promo video FUTURRA',
+    title: 'Fakultet turizma i ruralnog razvoja u Požegi',
     year: 2025,
     kicker: 'FACULTY PROMO VIDEO',
     image: futuraImg,
@@ -456,6 +494,31 @@ const projects = [
     ]
   },
   {
+    id: 'inhof',
+    title: 'Inhof logistika',
+    year: 2024,
+    kicker: 'BRANDING',
+    image: InhofImg,
+    images: [inh1, inh2, inh1, inh2],
+    layout: 'default',
+    client: 'Inhof logistika',
+    services: 'Branding',
+    location: 'Osijek, Hrvatska',
+    tagline: 'Brendiranje',
+    story: 'Poduzeće koje se bavi transportom, logistikom i skladištenjem. Tvrtka sa višegodišnjim iskustvom u poslu.',
+    approach:
+      'Za Inhof logistiku razvili smo kompletan vizualni identitet koji odražava profesionalnost, organiziranost i stabilnost tvrtke. Cilj je bio stvoriti moderan i prepoznatljiv brend koji jasno komunicira djelatnost logistike i transporta, ali i ulijeva povjerenje partnerima i klijentima.',
+    tags: ['Transport', 'Logistics', 'Warehousing'],
+    sections: [
+      { title: 'Vizija', content: 'Cilj brendiranja bio je stvoriti identitet koji odražava pouzdanost i profesionalnost logističkog sektora. Vizualni jezik razvijen je kako bi jasno komunicirao stabilnost, organizaciju i efikasnost poslovanja.' },
+      {
+        title: 'Naš pristup',
+        content:
+          'Kroz minimalistički dizajn i snažne tipografske elemente stvorili smo vizualni sustav koji je lako prepoznatljiv i primjenjiv na različitim platformama – od digitalnih kanala do fizičkih materijala poput vozila, dokumentacije i promotivnih materijala.'
+      }
+    ]
+  },
+  {
     id: 'soba-23',
     title: 'Soba 23 street food',
     year: 2025,
@@ -484,7 +547,7 @@ const projects = [
   {
     id: 'thera',
     title: 'Thera fireplaces',
-    year: 2024,
+    year: 2025,
     kicker: 'BRANDING & SOCIAL MEDIA MANAGEMENT',
     image: theraImg,
     images: [th1, th2, th3, th1],
