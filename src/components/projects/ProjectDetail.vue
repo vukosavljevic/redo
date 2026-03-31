@@ -30,12 +30,43 @@
       </div>
     </div>
 
-    <div class="hero-media hero-media-grid">
-      <template v-for="(img, i) in galleryImages" :key="i">
-        <div class="hero-media-cell">
+    <div class="hero-media hero-media-carousel" v-if="galleryImages.length">
+      <div class="carousel-track" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
+        <div v-for="(img, i) in galleryImages" :key="i" class="carousel-slide">
           <img :src="img" :alt="`${project.title} – ${i + 1}`" />
         </div>
-      </template>
+      </div>
+
+      <button
+        v-if="galleryImages.length > 1"
+        class="carousel-nav carousel-nav-prev"
+        type="button"
+        aria-label="Previous image"
+        @click="goToPrevious"
+      >
+        &#10094;
+      </button>
+      <button
+        v-if="galleryImages.length > 1"
+        class="carousel-nav carousel-nav-next"
+        type="button"
+        aria-label="Next image"
+        @click="goToNext"
+      >
+        &#10095;
+      </button>
+
+      <div v-if="galleryImages.length > 1" class="carousel-dots">
+        <button
+          v-for="(_, i) in galleryImages"
+          :key="i"
+          class="carousel-dot"
+          :class="{ 'carousel-dot-active': i === currentSlide }"
+          :aria-label="`Go to image ${i + 1}`"
+          type="button"
+          @click="goToSlide(i)"
+        />
+      </div>
     </div>
 
     <div class="content-grid" :class="{ 'content-grid-sections': project.sections?.length }">
@@ -88,7 +119,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const props = defineProps({
   project: {
@@ -99,15 +130,40 @@ const props = defineProps({
 
 defineEmits(['back'])
 
-/** 4 images for 2x2 grid: use project.images if present, else repeat main image */
+const currentSlide = ref(0)
+
+const goToSlide = (index) => {
+  currentSlide.value = index
+}
+
+const goToPrevious = () => {
+  const total = galleryImages.value.length
+  if (total < 2) return
+  currentSlide.value = (currentSlide.value - 1 + total) % total
+}
+
+const goToNext = () => {
+  const total = galleryImages.value.length
+  if (total < 2) return
+  currentSlide.value = (currentSlide.value + 1) % total
+}
+
+// Use all project images when available; otherwise fallback to single hero image.
 const galleryImages = computed(() => {
   const imgs = props.project.images
-  if (imgs && Array.isArray(imgs) && imgs.length >= 4) {
-    return imgs.slice(0, 4)
+  if (imgs && Array.isArray(imgs) && imgs.length) {
+    return imgs
   }
   const main = props.project.image
-  return main ? [main, main, main, main] : []
+  return main ? [main] : []
 })
+
+watch(
+  () => props.project.id,
+  () => {
+    currentSlide.value = 0
+  }
+)
 </script>
 
 <style scoped>
@@ -212,23 +268,83 @@ const galleryImages = computed(() => {
   object-fit: cover;
 }
 
-.hero-media-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0;
-  aspect-ratio: 1;
-}
-
-.hero-media-cell {
-  overflow: hidden;
+.hero-media-carousel {
   position: relative;
+  aspect-ratio: 16 / 9;
 }
 
-.hero-media-cell img {
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.carousel-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  z-index: 4;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.carousel-nav:hover {
+  background: rgba(238, 6, 6, 0.65);
+  border-color: rgba(238, 6, 6, 0.9);
+}
+
+.carousel-nav-prev {
+  left: 1rem;
+}
+
+.carousel-nav-next {
+  right: 1rem;
+}
+
+.carousel-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 4;
+}
+
+.carousel-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.carousel-dot-active {
+  background: #ee0606;
+  border-color: #ee0606;
+  transform: scale(1.2);
 }
 
 .content-grid {
@@ -312,14 +428,13 @@ const galleryImages = computed(() => {
 }
 
 @media (max-width: 768px) {
-  .hero-media-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    aspect-ratio: auto;
+  .hero-media-carousel {
+    aspect-ratio: 4 / 3;
   }
 
-  .hero-media-cell {
-    aspect-ratio: 4 / 3;
+  .carousel-nav {
+    width: 2.4rem;
+    height: 2.4rem;
   }
 
   .project-detail {
