@@ -208,10 +208,10 @@ import lr2 from '@/assets/Liros/2.png'
 import lr3 from '@/assets/Liros/6.png'
 import lr4 from '@/assets/Liros/8.png'
 
-import vnm1 from '@/assets/VinumAcademicum/vnm1.jpg'
-import vnm2 from '@/assets/VinumAcademicum/vnm2.jpg'
-import vnm3 from '@/assets/VinumAcademicum/vnm3.jpg'
-import vnm4 from '@/assets/VinumAcademicum/vnm4.jpg'
+import vnm1 from '@/assets/VinumAcademicum/vnm1.png'
+import vnm2 from '@/assets/VinumAcademicum/vnm2.png'
+import vnm3 from '@/assets/VinumAcademicum/vnm3.png'
+import vnm4 from '@/assets/VinumAcademicum/vnm4.png'
 
 import grf1 from '@/assets/Grafos/2.png'
 import grf2 from '@/assets/Grafos/3.png'
@@ -301,6 +301,23 @@ function onLoaderTransitionEnd(e) {
  * - Ostalo ne dirano.
  */
 const projects = [
+{
+    id: 'vinum-academicum',
+    title: 'Vinum Academicum',
+    year: 2026,
+    kicker: 'Photo production & social',
+    image: VinumImg,
+    images: [vnm1, vnm3, vnm4, vnm2],
+    layout: 'default',
+    client: 'Vinum Academicum',
+    services: 'Foto, social, promo',
+    location: 'Hrvatska',
+    tagline: 'Akademska vina zlatne doline.',
+    story:
+      'Vinum Academicum povezuje edukaciju i vino. Vinarija smještena na obroncima Papuka u Požeško-slavonskoj županiji, prostire se na 2 vinograda od ukupne površine 8 ha te proizvodi više sorti vina.',
+    approach: 'Ozbiljnost i personaliziranost',
+    tags: ['Winery', 'Photo', 'Social']
+  },
   {
     id: 'en-primeur',
     title: 'En Primeur',
@@ -699,23 +716,6 @@ const projects = [
     approach: 'Jednostavna web stranica prilagođena svim uređajima',
     tags: ['Car dealership', 'Web']
   },
-  {
-    id: 'vinum-academicum',
-    title: 'Vinum Academicum',
-    year: 2025,
-    kicker: 'Photo production & social',
-    image: VinumImg,
-    images: [vnm1, vnm3, vnm4, vnm2],
-    layout: 'default',
-    client: 'Vinum Academicum',
-    services: 'Foto, social, promo',
-    location: 'Hrvatska',
-    tagline: 'Akademska vina zlatne doline.',
-    story:
-      'Vinum Academicum povezuje edukaciju i vino. Vinarija smještena na obroncima Papuka u Požeško-slavonskoj županiji, prostire se na 2 vinograda od ukupne površine 8 ha te proizvodi više sorti vina.',
-    approach: 'Ozbiljnost i personaliziranost',
-    tags: ['Winery', 'Photo', 'Social']
-  }
 ]
 
 const selectedProject = ref(null)
