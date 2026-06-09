@@ -139,7 +139,7 @@ import vargaImg from '@/assets/varga.png'
 import futuraImg from '@/assets/futura.png'
 import wineosImg from '@/assets/wineos.png'
 import lamedusaImg from '@/assets/lamedusa.png'
-import brokoImg from '@/assets/broko.png'
+import brokoImg from '@/assets/broko.jpg'
 import dubiozaImg from '@/assets/Dubioza.png'
 import kameleonImg from '@/assets/Kameleon.png'
 import lirosImg from '@/assets/Liros.png'
@@ -153,6 +153,7 @@ import VinumImg from '@/assets/Vinum.png'
 import RingRoomImg from '@/assets/RingRoom.png'
 import GrafosImg from '@/assets/Grafos.png'
 import InhofImg from '@/assets/Inhof.png'
+import TomicaĐukić from '@/assets/TomicaĐukić.jpg'
 
 import enpr1 from '@/assets/EnPrimeur/enpr1.jpeg'
 import enpr2 from '@/assets/EnPrimeur/enpr2.jpeg'
@@ -218,6 +219,11 @@ import grf2 from '@/assets/Grafos/3.png'
 
 import inh1 from '@/assets/Inhof/ads.png'
 import inh2 from '@/assets/Inhof/ads (1).png'
+
+import chf1 from '@/assets/TomicaD/1a.jpeg'
+import chf2 from '@/assets/TomicaD/2a.jpeg'
+import chf3 from '@/assets/TomicaD/3a.jpeg'
+import chf4 from '@/assets/TomicaD/4a.jpeg'
 
 const route = useRoute()
 const router = useRouter()
@@ -317,6 +323,23 @@ const projects = [
       'Vinum Academicum povezuje edukaciju i vino. Vinarija smještena na obroncima Papuka u Požeško-slavonskoj županiji, prostire se na 2 vinograda od ukupne površine 8 ha te proizvodi više sorti vina.',
     approach: 'Ozbiljnost i personaliziranost',
     tags: ['Winery', 'Photo', 'Social']
+  },
+  {
+    id: 'tomica-futurra',
+    title: 'Tomica Đukić x FUTURRA',
+    year: 2026,
+    kicker: 'Photo production & social',
+    image: TomicaĐukić,
+    images: [chf1, chf3, chf4, chf2],
+    layout: 'default',
+    client: 'FUTURRA',
+    services: 'Foto, social, promo',
+    location: 'Hrvatska',
+    tagline: 'Renomirani chef predaje studentima FUTURRE',
+    story:
+      'Studentima smjerova 2. Enogastronomije i Turizma na predavanja je došao renomirani executive chef/chef vatrenih Tomica Đukić. Na predavanjima je prezentirana internacionalna kuhinja koja se sastojala od sveukupno 15 jela na 3 predavanja. Neka od njih su Rosti od krumpira i piletina marsala, Proljetni rižoto sa povrćem i acceto kuglicama itd. ',
+    approach: 'Ozbiljnost i profesionalnost',
+    tags: ['Chef', 'Photo', 'Social']
   },
   {
     id: 'en-primeur',
