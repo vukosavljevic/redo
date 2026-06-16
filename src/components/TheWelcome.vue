@@ -89,11 +89,11 @@
         </p>
         <div class="about-stats">
           <div class="stat-item">
-            <div class="stat-number">21+</div>
+            <div class="stat-number">29+</div>
             <div class="stat-label">Uspješnih projekata</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">4+</div>
+            <div class="stat-number">3.5+</div>
             <div class="stat-label">Godina iskustva</div>
           </div>
           <div class="stat-item">
@@ -154,6 +154,7 @@ import RingRoomImg from '@/assets/RingRoom.png'
 import GrafosImg from '@/assets/Grafos.png'
 import InhofImg from '@/assets/Inhof.png'
 import TomicaĐukić from '@/assets/TomicaĐukić.jpg'
+import UNIOS from '@/assets/unios.jpg'
 
 import enpr1 from '@/assets/EnPrimeur/enpr1.jpeg'
 import enpr2 from '@/assets/EnPrimeur/enpr2.jpeg'
@@ -224,6 +225,11 @@ import chf1 from '@/assets/TomicaD/1a.jpeg'
 import chf2 from '@/assets/TomicaD/2a.jpeg'
 import chf3 from '@/assets/TomicaD/3a.jpeg'
 import chf4 from '@/assets/TomicaD/4a.jpeg'
+
+import un1 from '@/assets/SciArt/1.jpg'
+import un2 from '@/assets/SciArt/2.jpg'
+import un3 from '@/assets/SciArt/3.jpg'
+import un4 from '@/assets/SciArt/4.jpg'
 
 const route = useRoute()
 const router = useRouter()
@@ -323,6 +329,23 @@ const projects = [
       'Vinum Academicum povezuje edukaciju i vino. Vinarija smještena na obroncima Papuka u Požeško-slavonskoj županiji, prostire se na 2 vinograda od ukupne površine 8 ha te proizvodi više sorti vina.',
     approach: 'Ozbiljnost i personaliziranost',
     tags: ['Winery', 'Photo', 'Social']
+  },
+  {
+    id: 'jj-strossmayer',
+    title: 'Sveučilište Josipa Jurja Strossmayera u Osijeku',
+    year: 2026,
+    kicker: 'Photo production & social',
+    image: UNIOS,
+    images: [un1, un3, un4, un2],
+    layout: 'default',
+    client: 'Sveučilište Josipa Jurja Strossmayera u Osijeku',
+    services: 'Foto, social, promo',
+    location: 'Hrvatska',
+    tagline: 'SciArt festival u organizaciji UNIOS-a',
+    story:
+      'Studentima smjerova 2. Enogastronomije i Turizma na predavanja je došao renomirani executive chef/chef vatrenih Tomica Đukić. Na predavanjima je prezentirana internacionalna kuhinja koja se sastojala od sveukupno 15 jela na 3 predavanja. Neka od njih su Rosti od krumpira i piletina marsala, Proljetni rižoto sa povrćem i acceto kuglicama itd. ',
+    approach: 'Ozbiljnost i profesionalnost',
+    tags: ['Chef', 'Photo', 'Social']
   },
   {
     id: 'tomica-futurra',
